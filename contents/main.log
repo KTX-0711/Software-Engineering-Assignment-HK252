@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.24)  2 MAR 2026 15:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.24)  2 MAR 2026 15:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/main.tex
-(/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/main.tex
+**/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/contents/main.tex
+(/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/contents/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -937,10 +937,8 @@ File: svgnam.def 2024/09/29 v3.02 Predefined colors according to SVG 1.1 (UK)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count358
-) (./main.aux
-Package babel Info: 'vietnamese' activates 'vietnamese' shorthands.
-(babel)             Reported on input line 9.
 )
+No file main.aux.
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
@@ -963,12 +961,13 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
 LaTeX Font Info:    ... okay on input line 112.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 112.
 LaTeX Font Info:    ... okay on input line 112.
+Package babel Info: 'vietnamese' activates 'vietnamese' shorthands.
+(babel)             Reported on input line 112.
 Package hyperref Info: Link coloring OFF on input line 112.
- (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
- (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count359
 \scratchdimen=\dimen320
@@ -1029,13 +1028,29 @@ LaTeX Encoding Info:    Redeclaring text symbol \textquotesingle (encoding TS1) 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 )
-<hcmut.png, id=39, 597.6729pt x 597.6729pt>
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 127.
-(pdftex.def)             Requested size: 241.84843pt x 241.84644pt.
+
+LaTeX Warning: File `hcmut.png' not found on input line 127.
+
+
+/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/contents/main.tex:127: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.127 ...egraphics[width=0.5\textwidth]{hcmut.png}
+                                                  \\[0.3cm]
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for T5+zi4 on input line 127.
+LaTeX Font Info:    No file T5zi4.fd. on input line 127.
+
+LaTeX Font Warning: Font shape `T5/zi4/m/n' undefined
+(Font)              using `T5/cmr/m/n' instead on input line 127.
+
 LaTeX Font Info:    Trying to load font information for U+msa on input line 140.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 140.
@@ -1043,7 +1058,8 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 140.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./hcmut.png>] (./main.toc)
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+No file main.toc.
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
@@ -1053,16 +1069,46 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.176 \newpage
                [1]
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 205.
-(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
-LaTeX Font Info:    Trying to load font information for T5+zi4 on input line 205.
-LaTeX Font Info:    No file T5zi4.fd. on input line 205.
+
+LaTeX Warning: File `hcmut.png' not found on input line 205.
 
 
-LaTeX Font Warning: Font shape `T5/zi4/m/n' undefined
-(Font)              using `T5/cmr/m/n' instead on input line 205.
+/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/contents/main.tex:205: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.205     \item \textbf
+                       {Các hệ thống bên ngoài:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Package fancyhdr Warning: \headheight is too small (24.5pt): 
+(fancyhdr)                Make it at least 29.87823pt, for example:
+(fancyhdr)                \setlength{\headheight}{29.87823pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 205.
+
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./screnario_IoT.tex
+
+LaTeX Warning: File `hcmut.png' not found on input line 23.
+
+
+./screnario_IoT.tex:23: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 \newpage
+             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 Package fancyhdr Warning: \headheight is too small (24.5pt): 
@@ -1071,24 +1117,24 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./contents/screnario_IoT.tex
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 23.
-(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
 
-
-Package fancyhdr Warning: \headheight is too small (24.5pt): 
-(fancyhdr)                Make it at least 29.87823pt, for example:
-(fancyhdr)                \setlength{\headheight}{29.87823pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 23.
 
 [3]
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 23.
-(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+LaTeX Warning: File `hcmut.png' not found on input line 23.
+
+
+./screnario_IoT.tex:23: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 \newpage
+             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 Package fancyhdr Warning: \headheight is too small (24.5pt): 
@@ -1096,12 +1142,25 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                \setlength{\headheight}{29.87823pt}.
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 23.
 
 [4]
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 49.
-(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+LaTeX Warning: File `hcmut.png' not found on input line 49.
+
+
+./screnario_IoT.tex:49: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.49 \newpage
+             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 Package fancyhdr Warning: \headheight is too small (24.5pt): 
@@ -1109,12 +1168,25 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                \setlength{\headheight}{29.87823pt}.
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 49.
 
 [5]
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 76.
-(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+LaTeX Warning: File `hcmut.png' not found on input line 76.
+
+
+./screnario_IoT.tex:76: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.76 \newpage
+             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 Package fancyhdr Warning: \headheight is too small (24.5pt): 
@@ -1122,12 +1194,25 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                \setlength{\headheight}{29.87823pt}.
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 76.
 
 [6])
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 230.
-(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+LaTeX Warning: File `hcmut.png' not found on input line 230.
+
+
+/home/nguyentrinh/Latex_work_space/BTL_CNPM_HK252/CNPM_BTL/contents/main.tex:230: Package pdftex.def Error: File `hcmut.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.230 \end{document}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 Package fancyhdr Warning: \headheight is too small (24.5pt): 
@@ -1135,6 +1220,9 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                \setlength{\headheight}{29.87823pt}.
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 230.
 
 [7] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -1147,22 +1235,37 @@ L3 programming layer <2025-11-06>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FBA42567A7724AE679795361C7782248;1363.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  FBA42567A7724AE679795361C7782248;1363.
+
+Package lastpage Warning: Rerun to get the references right on input line 230.
+
  ) 
 Here is how much of TeX's memory you used:
- 30354 strings out of 467538
- 565823 string characters out of 5419551
- 970738 words of memory out of 5000000
- 58742 multiletter control sequences out of 15000+600000
- 641337 words of font info for 68 fonts, out of 8000000 for 9000
+ 30360 strings out of 467538
+ 566081 string characters out of 5419551
+ 970571 words of memory out of 5000000
+ 58756 multiletter control sequences out of 15000+600000
+ 642318 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,24n,117p,1184b,695s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb>
-Output written on main.pdf (8 pages, 143038 bytes).
+ 84i,23n,117p,1193b,761s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb>
+Output written on main.pdf (8 pages, 95091 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 88 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  17 named destinations out of 1000 (max. 500000)
- 82 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

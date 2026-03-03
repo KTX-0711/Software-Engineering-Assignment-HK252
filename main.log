@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.24)  3 MAR 2026 09:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.24)  3 MAR 2026 12:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -943,27 +943,27 @@ Package babel Info: 'vietnamese' activates 'vietnamese' shorthands.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-Package hyperref Info: Link coloring OFF on input line 112.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+Package hyperref Info: Link coloring OFF on input line 111.
  (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -1024,21 +1024,21 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 \c@lstlisting=\count365
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Encoding Info:    Text command \textquotesingle (encoding T5) is not declared on input line 112.
-LaTeX Encoding Info:    Redeclaring text symbol \textquotesingle (encoding TS1) on input line 112.
+LaTeX Encoding Info:    Text command \textquotesingle (encoding T5) is not declared on input line 111.
+LaTeX Encoding Info:    Redeclaring text symbol \textquotesingle (encoding TS1) on input line 111.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 )
-<hcmut.png, id=39, 597.6729pt x 597.6729pt>
+<hcmut.png, id=43, 597.6729pt x 597.6729pt>
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 127.
+Package pdftex.def Info: hcmut.png  used on input line 126.
 (pdftex.def)             Requested size: 241.84843pt x 241.84644pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 140.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 139.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 140.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 139.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -1051,18 +1051,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.176 \newpage
+l.175 \newpage
                [1]
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 205.
+Package pdftex.def Info: hcmut.png  used on input line 204.
 (pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
-LaTeX Font Info:    Trying to load font information for T5+zi4 on input line 205.
-LaTeX Font Info:    No file T5zi4.fd. on input line 205.
+LaTeX Font Info:    Trying to load font information for T5+zi4 on input line 204.
+LaTeX Font Info:    No file T5zi4.fd. on input line 204.
 
 
 LaTeX Font Warning: Font shape `T5/zi4/m/n' undefined
-(Font)              using `T5/cmr/m/n' instead on input line 205.
+(Font)              using `T5/cmr/m/n' instead on input line 204.
 
 
 Package fancyhdr Warning: \headheight is too small (24.5pt): 
@@ -1071,10 +1071,10 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./contents/screnario_IoT.tex
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./contents/screnario_quanly_tk.tex
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 23.
+Package pdftex.def Info: hcmut.png  used on input line 33.
 (pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
 
 
@@ -1085,6 +1085,51 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
 [3]
+Underfull \hbox (badness 10000) in paragraph at lines 60--60
+\T5/zi4/m/n/12 3. H» thèng gûi y¶u c¦u truy v§n thæng tin tîi
+ []
+
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png  used on input line 64.
+(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+Package fancyhdr Warning: \headheight is too small (24.5pt): 
+(fancyhdr)                Make it at least 29.87823pt, for example:
+(fancyhdr)                \setlength{\headheight}{29.87823pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+[4]
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png  used on input line 93.
+(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+
+Package fancyhdr Warning: \headheight is too small (24.5pt): 
+(fancyhdr)                Make it at least 29.87823pt, for example:
+(fancyhdr)                \setlength{\headheight}{29.87823pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+[5])
+Underfull \hbox (badness 10000) in paragraph at lines 95--221
+
+ []
+
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png  used on input line 221.
+(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+Package fancyhdr Warning: \headheight is too small (24.5pt): 
+(fancyhdr)                Make it at least 29.87823pt, for example:
+(fancyhdr)                \setlength{\headheight}{29.87823pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+[6] (./contents/screnario_IoT.tex
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png  used on input line 23.
@@ -1097,7 +1142,20 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
-[4]
+[7]
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png  used on input line 23.
+(pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
+
+
+Package fancyhdr Warning: \headheight is too small (24.5pt): 
+(fancyhdr)                Make it at least 29.87823pt, for example:
+(fancyhdr)                \setlength{\headheight}{29.87823pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
+
+[8]
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png  used on input line 49.
@@ -1110,7 +1168,7 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
-[5]
+[9]
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png  used on input line 76.
@@ -1123,10 +1181,10 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
-[6])
+[10])
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png  used on input line 230.
+Package pdftex.def Info: hcmut.png  used on input line 232.
 (pdftex.def)             Requested size: 22.76219pt x 22.75375pt.
 
 
@@ -1136,7 +1194,7 @@ Package fancyhdr Warning: \headheight is too small (24.5pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-5.37823pt}.
 
-[7] 
+[11] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -1148,21 +1206,21 @@ L3 programming layer <2025-11-06>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FBA42567A7724AE679795361C7782248;1363.
+(rerunfilecheck)             Checksum: 758E49C3E7EF8F867D229D08DFCCD8C6;1695.
  ) 
 Here is how much of TeX's memory you used:
- 30354 strings out of 467538
- 565823 string characters out of 5419551
- 970738 words of memory out of 5000000
- 58742 multiletter control sequences out of 15000+600000
+ 30374 strings out of 467538
+ 566229 string characters out of 5419551
+ 974744 words of memory out of 5000000
+ 58754 multiletter control sequences out of 15000+600000
  641337 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,24n,117p,1184b,695s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,25n,117p,1184b,695s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/vntex/vnr/vnti12.pfb>
-Output written on main.pdf (8 pages, 143038 bytes).
+Output written on main.pdf (12 pages, 154477 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 17 named destinations out of 1000 (max. 500000)
- 82 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 152 PDF objects out of 1000 (max. 8388607)
+ 124 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 90 words of extra memory for PDF output out of 10000 (max. 10000000)
 

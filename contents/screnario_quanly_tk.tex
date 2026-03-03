@@ -1,0 +1,21 @@
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U1.1 \newline \textbf{Cập nhật trạng thái vị trí đỗ} \\ \hline
+\textbf{Use-case overview} & Cho phép hệ thống IoT thu thập và cập nhật liên tục tình trạng của từng vị trí đỗ xe lên hệ thống trung tâm. \\ \hline
+\textbf{Actors} & 1. IoT Sensors/Gateway \\ \hline
+\textbf{Preconditions} & 
+1. Hệ thống đang hoạt động bình thường (không mất kết nối, không bị quá tải)\newline
+2. Các cảm biến IoT tại vị trí đỗ đã được cấp nguồn và có kết nối mạng ổn định tới Gateway. \\ \hline
+\textbf{Trigger} & Cứ mỗi 15s cảm biến thu thập và gửi thông tin về sự thay đổi vật lý tại vị trí đỗ. \\ \hline
+\textbf{Steps} & 
+1. Cảm biến quét khu vực đỗ và cập nhật trạng thái.\newline
+2. IoT Gateway tiếp nhận tín hiệu từ cảm biến và gắn thêm mốc thời gian cụ thể.\newline
+3. IoT Gateway truyền dữ liệu trạng thái cùng định danh của vị trí đỗ về hệ thống quản lý trung tâm.\newline
+4. Hệ thống trung tâm tiếp nhận, lưu trữ dữ liệu vào cơ sở dữ liệu và xác nhận quá trình cập nhật hoàn tất. \\ \hline
+\textbf{Post conditions} & Trạng thái mới nhất của vị trí đỗ xe được lưu trữ chính xác trong cơ sở dữ liệu của hệ thống. \\ \hline
+\textbf{Exception flow} & 
+- \textbf{E1 (Mất kết nối mạng):} IoT Gateway không thể gửi dữ liệu lên hệ thống. Dữ liệu trạng thái sẽ được lưu cục bộ tại Gateway và tự động đồng bộ lại ngay khi kết nối được khôi phục. \newline 
+- \textbf{E2 (Dữ liệu không hợp lệ)}: Nếu hệ thống phát hiện gói tin sai cấu trúc hoặc cảm biến không tồn tại trong danh mục, hệ thống sẽ từ chối lưu bản ghi và tự động ghi lại lỗi để Admin kiểm tra. \\ \hline
+\end{tabularx}

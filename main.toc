@@ -7,4 +7,5 @@
 \contentsline {section}{\numberline {2}Screnario cho các nhóm chức năng}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Screnario cho nhóm chức năng quản lý tài khoản}{4}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Screnario cho nhóm IoT}{8}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Các non-interactive functional requirement}{11}{section.3}%
+\contentsline {subsection}{\numberline {2.3}Screnario cho nhóm thanh toán}{11}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Các non-interactive functional requirement}{13}{section.3}%

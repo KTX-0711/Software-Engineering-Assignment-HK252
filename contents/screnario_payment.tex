@@ -1,0 +1,114 @@
+% --- Use Case U9 ---
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U9 \newline \textbf{Xem lịch sử giao dịch cá nhân
+} \\ \hline
+\textbf{Use-case overview} & Cho phép người dùng xem toàn bộ lịch sử giao dịch. \\ \hline
+\textbf{Actors} & 1. Khách gửi xe có tài khoản \\  \hline
+\textbf{Preconditions} & 
+1. Hệ thống kết nối tới các máy chủ đã xác thực và khả dụng.\newline
+2. Người dùng đã đăng nhập vào hệ thống.\\ \hline
+\textbf{Trigger} & Người dùng chọn “Lịch sử giao dịch”. \\ \hline
+\textbf{Steps} & 
+1. Người dùng mở mục lịch sử giao dịch. \newline
+2. Truy xuất dữ liệu giao dịch từ cơ sở dữ liệu trên hệ thống. \newline
+3. Hiển thị danh sách giao dịch:
+\vspace*{-10pt}
+\begin{itemize}
+    \item Thời gian
+    \vspace*{-10pt}
+    \item Số tiền
+    \vspace*{-10pt}
+    \item Trạng thái thanh toán
+\end{itemize}
+\vspace*{-10pt}
+4. Người dùng có thể chọn sắp xếp: 
+\vspace*{-10pt}
+    \begin{itemize}
+        \item Thời gian
+        \vspace*{-10pt}
+        \item Số tiền
+        \vspace*{-10pt}
+        \item Trạng thái thanh toán
+    \end{itemize}
+\vspace*{-10pt}\\ \hline
+\textbf{Post conditions} & Lịch sử giao dịch được hiển thị thành công. \newline Không thay đổi dữ liệu hệ thống.
+ \\ \hline
+\textbf{Exception flow} & 
+- \textbf{E1 (Không có giao dịch):} Hệ thống hiển thị danh sách trống.\\ \hline
+\end{tabularx}
+
+\vspace{0.5cm}
+
+% --- Use Case U10 ---
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U10 \newline \textbf{Thanh toán tự động} \\ \hline
+\textbf{Use-case overview} & Cho phép người dùng thanh toán hóa đơn gửi xe thông qua cổng thanh toán BKPay. \\ \hline
+\textbf{Actors} & 1. Khách gửi xe có tài khoản. \newline 2. BKPay. \\ \hline
+\textbf{Preconditions} & 
+1. Hệ thống kết nối tới các máy chủ đã xác thực và khả dụng \newline
+2. Người dùng đã đăng nhập \newline
+3. Hệ thống đã tính toán phí gửi xe và gửi yêu cầu thanh toán lên BKPay \newline
+4. Tồn tại hóa đơn chưa thanh toán. \\ \hline
+\textbf{Trigger} & Người dùng chọn “Thanh toán hóa đơn” trên hệ thống. \\ \hline
+\textbf{Steps} & 
+1. Hệ thống chuyển sang BKPay.\newline
+2. BKPay hiển thị danh sách hóa đơn chưa thanh toán (gồm số tiền, thời hạn thanh toán). \newline
+3. Người dùng chọn “Thanh toán" trên một hóa đơn.\newline
+4. Người dùng thanh toán trên BKPay.\newline
+5. BKPay trả kết quả về hệ thống: 
+\vspace*{-10pt}
+    \begin{itemize}
+        \item Thành công → cập nhật trạng thái “Đã thanh toán”.
+        \vspace*{-10pt}
+        \item Thất bại → ghi nhận “Chưa thanh toán”. 
+    \end{itemize}
+\vspace*{-10pt}
+\\ \hline
+\textbf{Post conditions} &  
+                            1. Giao dịch được lưu vào lịch sử giao dịch. \newline
+                            2. Người dùng nhận thông báo kết quả "Giao dịch thành công".
+ \\ \hline
+\textbf{Exception flow} & 
+- \textbf{E1 (Thanh toán thất bại (lỗi mạng, chưa thanh toán)):} Hiện bảng thông báo "Giao dịch thất bại".\newline 
+- \textbf{E2 (Hết hạn thanh toán):} Khóa tài khoản. \\ \hline
+\end{tabularx}
+
+% --- Use Case U11 ---
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U11 \newline \textbf{Thanh toán thủ công} \\ \hline
+\textbf{Use-case overview} & Cho phép thanh toán thủ công, hỗ trợ bởi nhân viên bãi xe. \\ \hline
+\textbf{Actors} & 1. Khách gửi xe có tài khoản hoặc không có tài khoản. \newline
+                    2. Nhân viên bãi xe\\ \hline
+\textbf{Preconditions} & 
+1. Người gửi xe chọn thanh toán thủ công khi vào cổng và được phát thẻ tạm.\newline
+2. Hệ thống ghi nhận giao dịch, biển số xe và thời gian bắt đầu gửi xe.\newline
+2. Hệ thống đã tính được phí gửi xe.
+\\ \hline
+\textbf{Trigger} & Người gửi xe có mặt tại cổng ra. \\ \hline
+\textbf{Steps} & 
+1. Người gửi xe sử dụng thẻ tạm để quét.\newline
+2. Hệ thống truy xuất phí.\newline
+3. Hiển thị số tiền trên hệ thống.\newline
+4. Người gửi xe trả tiền.\newline
+5. Nhân viên xác nhận đã nhận tiền trên hệ thống.
+ \\ \hline
+\textbf{Post conditions} & 1. Giao dịch được đánh dấu đã thanh toán. \newline
+                            2. Xe được phép rời bãi.
+
+ \\ \hline
+\textbf{Exception flow} & 
+- \textbf{E1 (Không tìm thấy giao dịch gửi xe (hệ thống bị lỗi)):} Nhân viên xác minh thủ công, ghi lại giao dịch trên hệ thống.
+ \\ \hline
+\end{tabularx}
+
+\vspace{0.5cm}
+
+

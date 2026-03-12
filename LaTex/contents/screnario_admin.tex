@@ -1,0 +1,137 @@
+% --- Use Case U5.1 ---
+\vspace{0.5cm}
+\noindent
+{\small % Ép font chữ toàn bộ bảng xuống size nhỏ hơn
+\renewcommand{\arraystretch}{0.95} % Co nhẹ khoảng cách trên/dưới của text trong cell
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.1 \newline \textbf{Giám sát hạ tầng IoT} \\ \hline
+\textbf{Use-case overview} & Cho phép quản trị viên theo dõi trạng thái hoạt động của toàn bộ thiết bị IoT trong hệ thống bãi đỗ xe theo thời gian thực. \\ \hline
+\textbf{Actors} & 1. Primary: Admin \newline 2. Secondary: IoT Sensors/Gateway \\ \hline
+\textbf{Preconditions} & 
+1. Admin đã đăng nhập và được phân quyền quản trị hệ thống.\newline
+2. Hạ tầng IoT (sensors, gateways) đã được đăng ký và cấu hình trong hệ thống.\newline
+3. Kết nối mạng giữa hệ thống trung tâm và các gateway khả dụng. \\ \hline
+\textbf{Trigger} & Admin chọn mục "Giám sát hạ tầng IoT" trên giao diện quản trị. \\ \hline
+\textbf{Steps} & 
+1. Hệ thống hiển thị dashboard tổng quan gồm: tổng số thiết bị đã đăng ký, số thiết bị đang hoạt động (online), số thiết bị mất kết nối (offline), số thiết bị đang có cảnh báo phân chia theo khu vực bãi đỗ.\newline
+2. Admin chọn một thiết bị cụ thể trên dashboard.\newline
+3. Hệ thống hiển thị thông tin chi tiết thiết bị bao gồm: loại thiết bị (sensor/gateway/signage), mã thiết bị, vị trí lắp đặt, trạng thái hiện tại (online/offline/warning), thời điểm phản hồi lần cuối, và cường độ tín hiệu.\newline
+4. Hệ thống tự động cập nhật trạng thái thiết bị theo chu kỳ định sẵn mà không cần admin thao tác thủ công.\newline
+5. Khi phát hiện thiết bị bất thường, admin có thể đánh dấu thiết bị đó để bảo trì hoặc vô hiệu hóa tạm thời khỏi hệ thống giám sát. \\ \hline
+\textbf{Post conditions} & Thông tin trạng thái hạ tầng IoT được hiển thị thành công. Nếu admin thực hiện thao tác vô hiệu hóa hoặc đánh dấu bảo trì, trạng thái thiết bị được cập nhật tương ứng trong cơ sở dữ liệu. \\ \hline
+\textbf{Exception flow} & 
+- \textbf{E1 (Mất kết nối gateway):} Nếu một gateway không phản hồi trong khoảng thời gian quy định, hệ thống tự động đánh dấu gateway đó là offline và hiển thị cảnh báo trên dashboard. Các sensor thuộc gateway đó cũng được đánh dấu trạng thái "không xác định".\newline
+- \textbf{E2 (Sensor không phản hồi):} Nếu sensor không gửi dữ liệu trong khoảng thời gian quy định, hệ thống đánh dấu sensor đó là offline và hiển thị cảnh báo cho admin.\newline
+- \textbf{E3 (Dữ liệu sensor bất thường):} Nếu giá trị trả về từ sensor nhảy liên tục, hệ thống đánh dấu cảnh báo "dữ liệu không nhất quán" và đề xuất admin kiểm tra thiết bị. \\ \hline
+\end{tabularx}
+} % Đóng scope của \small
+\newpage
+
+% --- Use Case U5.2 ---
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.2 \newline \textbf{Quản lý tài khoản nhân viên} \\ \hline % [cite: 204]
+\textbf{Use-case overview} & Cho phép quản trị viên tạo và vô hiệu hóa tài khoản đăng nhập cho nhân viên vận hành bãi đỗ xe. \\ \hline % [cite: 204]
+\textbf{Actors} & Primary: Admin \\ \hline % [cite: 204]
+\textbf{Preconditions} & 
+1. Admin đã đăng nhập và được phân quyền quản trị hệ thống.\newline % [cite: 204]
+2. Kết nối cơ sở dữ liệu khả dụng. \\ \hline % [cite: 204]
+\textbf{Trigger} & Admin chọn mục "Quản lý tài khoản nhân viên" trên giao diện quản trị. \\ \hline % [cite: 204]
+\textbf{Steps} & 
+1. Hệ thống hiển thị danh sách tài khoản nhân viên hiện có, bao gồm: họ tên, số điện thoại, tên đăng nhập, trạng thái (đang hoạt động / đã vô hiệu hóa).\newline % [cite: 204]
+2. Admin chọn thao tác: "Tạo tài khoản mới" hoặc chọn một tài khoản nhân viên đã có trong danh sách.\newline % [cite: 204]
+3. Nếu tạo mới: Hệ thống hiển thị biểu mẫu yêu cầu nhập họ tên, số điện thoại, tên đăng nhập và mật khẩu. Nếu vô hiệu hóa: Hệ thống hiển thị thông tin tài khoản được chọn kèm tùy chọn "Vô hiệu hóa".\newline % [cite: 204]
+4. Admin nhập thông tin (trường hợp tạo mới) hoặc nhấn "Vô hiệu hóa" (trường hợp vô hiệu hóa).\newline % [cite: 204]
+5. Hệ thống yêu cầu admin xác nhận thao tác.\newline % [cite: 204]
+6. Admin xác nhận.\newline % [cite: 204]
+7. Hệ thống thực hiện: tạo tài khoản với vai trò "Nhân viên vận hành" hoặc cập nhật trạng thái tài khoản thành "Đã vô hiệu hóa" và hủy phiên đăng nhập hiện tại của nhân viên đó (nếu có).\newline % [cite: 204]
+8. Hệ thống hiển thị thông báo kết quả thành công và cập nhật lại danh sách. \\ \hline % [cite: 204]
+\textbf{Post conditions} & Tài khoản nhân viên được tạo mới hoặc vô hiệu hóa thành công trong cơ sở dữ liệu. Danh sách tài khoản nhân viên được cập nhật phản ánh đúng trạng thái hiện tại. \\ \hline % [cite: 204]
+\textbf{Exception flow} & 
+- \textbf{E1 (Tên đăng nhập đã tồn tại):} Nếu tên đăng nhập trùng với tài khoản đã có, hệ thống thông báo "Tên đăng nhập đã được sử dụng" và yêu cầu nhập tên khác.\newline % [cite: 204]
+- \textbf{E2 (Thông tin không hợp lệ):} Nếu admin bỏ trống trường bắt buộc hoặc số điện thoại sai định dạng, hệ thống hiển thị lỗi tại trường tương ứng. \\ \hline % [cite: 204]
+\end{tabularx}
+\newpage
+
+% --- Use Case U5.3 ---
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.3 \newline \textbf{Xuất báo cáo} \\ \hline % [cite: 205]
+\textbf{Use-case overview} & Cho phép quản trị viên tạo và tải về các báo cáo thống kê về hoạt động gửi xe, doanh thu, tình trạng bãi đỗ xe và hoạt động nhân viên phục vụ công tác kiểm tra và đối soát. \\ \hline % [cite: 205]
+\textbf{Actors} & Primary: Admin \\ \hline % [cite: 205]
+\textbf{Preconditions} & 
+1. Admin đã đăng nhập và được phân quyền quản trị hệ thống.\newline % [cite: 205]
+2. Hệ thống đã ghi nhận dữ liệu hoạt động (lượt gửi xe, giao dịch thanh toán, nhật ký vận hành). \\ \hline % [cite: 205]
+\textbf{Trigger} & Admin chọn mục "Xuất báo cáo" trên giao diện quản trị. \\ \hline % [cite: 205]
+\textbf{Steps} & 
+1. Hệ thống hiển thị giao diện xuất báo cáo với các tùy chọn: loại báo cáo (lượt gửi xe, doanh thu, tình trạng bãi đỗ, hoạt động nhân viên) và bộ lọc thời gian (từ ngày – đến ngày).\newline % [cite: 205]
+2. Admin chọn loại báo cáo và khoảng thời gian mong muốn.\newline % [cite: 205]
+3. Admin nhấn "Xuất báo cáo".\newline % [cite: 205]
+4. Hệ thống truy vấn dữ liệu theo điều kiện lọc đã chọn.\newline % [cite: 205]
+5. Hệ thống tạo file Excel được định dạng sẵn chứa dữ liệu thống kê tương ứng.\newline % [cite: 205]
+6. Hệ thống cung cấp liên kết tải về và tự động tải file xuống máy của admin. \\ \hline % [cite: 205]
+\textbf{Post conditions} & File báo cáo định dạng Excel được tải về máy admin thành công. Dữ liệu hệ thống không bị thay đổi. \\ \hline % [cite: 205]
+\textbf{Exception flow} & 
+- \textbf{E1 (Không có dữ liệu):} Nếu khoảng thời gian được chọn không có dữ liệu tương ứng, hệ thống thông báo "Không có dữ liệu trong khoảng thời gian đã chọn" và không tạo file.\newline % [cite: 205]
+- \textbf{E2 (Khoảng thời gian không hợp lệ):} Nếu ngày bắt đầu lớn hơn ngày kết thúc hoặc admin bỏ trống, hệ thống hiển thị lỗi và yêu cầu chọn lại. \\ \hline % [cite: 205]
+\end{tabularx}
+\newpage
+
+% --- Use Case U5.4 ---
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.4 \newline \textbf{Thay đổi chính sách giá} \\ \hline % [cite: 206]
+\textbf{Use-case overview} & Cho phép quản trị viên cấu hình và cập nhật đơn giá gửi xe theo vai trò người dùng và khung giờ, phục vụ việc điều chỉnh chính sách giá theo quy định của trường. \\ \hline % [cite: 206]
+\textbf{Actors} & Primary: Admin \\ \hline % [cite: 206]
+\textbf{Preconditions} & 
+1. Admin đã đăng nhập và được phân quyền quản trị hệ thống.\newline % [cite: 206]
+2. Hệ thống đã có bảng chính sách giá hiện hành. \\ \hline % [cite: 206]
+\textbf{Trigger} & Admin chọn mục "Chính sách giá" trên giao diện quản trị. \\ \hline % [cite: 206]
+\textbf{Steps} & 
+1. Hệ thống hiển thị bảng chính sách giá hiện hành, phân theo vai trò (sinh viên, giảng viên, cán bộ, khách vãng lai) và khung giờ (6h30–18h, sau 18h, qua đêm).\newline % [cite: 206]
+2. Admin chọn mục giá cần chỉnh sửa.\newline % [cite: 206]
+3. Hệ thống hiển thị thông tin chi tiết của mục giá đó bao gồm: vai trò áp dụng, khung giờ, đơn giá hiện tại.\newline % [cite: 206]
+4. Admin nhập đơn giá mới và nhấn "Cập nhật".\newline % [cite: 206]
+5. Hệ thống yêu cầu admin xác nhận thay đổi.\newline % [cite: 206]
+6. Admin xác nhận.\newline % [cite: 206]
+7. Hệ thống lưu chính sách giá mới với trạng thái "Có hiệu lực từ ngày tiếp theo", đồng thời ghi nhật ký thay đổi bao gồm: người thực hiện, thời điểm thay đổi, giá trị cũ và giá trị mới.\newline % [cite: 206]
+8. Hệ thống thông báo "Cập nhật chính sách giá thành công. Giá mới sẽ được áp dụng từ ngày mai". \\ \hline % [cite: 206]
+\textbf{Post conditions} & Chính sách giá mới được lưu trong cơ sở dữ liệu và sẽ tự động áp dụng từ 0h00 ngày tiếp theo. Chính sách giá cũ vẫn có hiệu lực trong ngày hiện tại. Lịch sử thay đổi được ghi nhận đầy đủ. \\ \hline % [cite: 206]
+\textbf{Exception flow} & 
+- \textbf{E1 (Giá trị không hợp lệ):} Nếu admin nhập giá âm, bằng 0, hoặc không phải số, hệ thống hiển thị lỗi "Đơn giá không hợp lệ" và yêu cầu nhập lại.\newline % [cite: 206]
+- \textbf{E2 (Giá mới trùng giá cũ):} Nếu đơn giá mới giống hệt đơn giá hiện tại, hệ thống thông báo "Đơn giá không thay đổi" và không tạo bản ghi nhật ký. \\ \hline % [cite: 206]
+\end{tabularx}
+\newpage
+
+% --- Use Case U5.5 ---
+\vspace{0.5cm}
+\noindent
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
+\hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.5 \newline \textbf{Truy cập nhật ký hệ thống} \\ \hline % [cite: 207]
+\textbf{Use-case overview} & Cho phép quản trị viên xem trực tiếp nhật ký hoạt động của toàn bộ hệ thống bao gồm lượt ra/vào bãi xe, giao dịch thanh toán, thay đổi chính sách giá, hoạt động đăng nhập và thao tác của nhân viên vận hành. \\ \hline % [cite: 207]
+\textbf{Actors} & Primary: Admin \\ \hline % [cite: 207]
+\textbf{Preconditions} & 
+1. Admin đã đăng nhập và được phân quyền quản trị hệ thống.\newline % [cite: 207]
+2. Hệ thống đã ghi nhận dữ liệu nhật ký hoạt động. \\ \hline % [cite: 207]
+\textbf{Trigger} & Admin chọn mục "Nhật ký hệ thống" trên giao diện quản trị. \\ \hline % [cite: 207]
+\textbf{Steps} & 
+1. Hệ thống hiển thị danh sách nhật ký mới nhất theo thứ tự thời gian giảm dần, mỗi dòng gồm: thời điểm, loại sự kiện, người thực hiện, nội dung chi tiết.\newline % [cite: 207]
+2. Admin sử dụng bộ lọc để thu hẹp kết quả theo: loại sự kiện (lượt gửi xe, giao dịch, thay đổi giá, đăng nhập, thao tác nhân viên), khoảng thời gian (từ ngày – đến ngày), hoặc người dùng cụ thể.\newline % [cite: 207]
+3. Admin nhấn "Áp dụng bộ lọc".\newline % [cite: 207]
+4. Hệ thống truy vấn và hiển thị danh sách nhật ký phù hợp với điều kiện lọc.\newline % [cite: 207]
+5. Admin chọn một dòng nhật ký để xem chi tiết.\newline % [cite: 207]
+6. Hệ thống hiển thị toàn bộ thông tin chi tiết của sự kiện đó. \\ \hline % [cite: 207]
+\textbf{Post conditions} & Nhật ký hệ thống được hiển thị thành công trên màn hình. Dữ liệu hệ thống không bị thay đổi. \\ \hline % [cite: 207]
+\textbf{Exception flow} & 
+- \textbf{E1 (Không có dữ liệu):} Nếu bộ lọc không trả về kết quả nào, hệ thống thông báo "Không tìm thấy nhật ký phù hợp với điều kiện lọc".\newline % [cite: 207]
+- \textbf{E2 (Khoảng thời gian không hợp lệ):} Nếu ngày bắt đầu lớn hơn ngày kết thúc hoặc bỏ trống, hệ thống hiển thị lỗi và yêu cầu chọn lại. \\ \hline % [cite: 207]
+\end{tabularx}
+\newpage

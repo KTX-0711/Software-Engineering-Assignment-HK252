@@ -14,6 +14,7 @@
 \usepackage{fancyhdr}  % Ensure this is loaded last
 \usepackage{lastpage}
 \usepackage{setspace}
+\usepackage{longtable}
 \usetikzlibrary{calc}
 \usepackage{tabularx}
 \usepackage{array}  % For customizing row height
@@ -63,7 +64,7 @@
 %------------------------- header & footer -------------------------%
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
-\setlength{\headheight}{24.5pt}
+\setlength{\headheight}{30pt}
 \pagestyle{fancy}
 
 \fancyhead{}    % clear all header fields
@@ -131,7 +132,7 @@
     
     % Group Info
     \textbf{\large{Lớp: A01}}\\[0.2cm]
-   \textbf{\large{GVHD: Mai Đức Trung}}\\[0.2cm]
+    \textbf{\large{GVHD: Mai Đức Trung}}\\[0.2cm]
     \begin{table}[h]
     \renewcommand{\arraystretch}{1.5}  % Điều chỉnh chiều cao hàng (1.5 lần bình thường)
     \centering
@@ -169,8 +170,30 @@
 %=================== BODY CONTENT ===================%
 
 \newpage
-\setstretch{1.25}
+    {\large \textbf{BẢNG PHÂN CHIA CÔNG VIỆC}} \\[1.5ex] 
+\begin{table}[h]
+    \centering
+    % Dòng chữ to chỉ định tên bảng
 
+    
+    \renewcommand{\arraystretch}{2.0}  % Điều chỉnh chiều cao hàng (tăng lên 2.0 để cao hơn)
+    \begin{adjustbox}{max width=\textwidth} % Đảm bảo bảng vừa với chiều rộng trang
+    \begin{tabular}{|c|l|c|c|c|}
+        \hline
+        \textbf{STT} & \multicolumn{1}{c|}{\textbf{Họ và tên}} & \textbf{MSSV} & \textbf{Đóng góp} & \textbf{Công việc cá nhân} \\ \hline
+        1 & Nguyễn Văn Hùng & 2311301 & 100\% & Scenario cho nhóm thanh toán  \\ \hline
+        2 & Trần Minh Trí & 2313626 & 100\% & Scenario cho nhóm tiện ích bãi xe \\ \hline
+        3 & Nguyễn Lưu Khánh Trình & 2313638 & 100\% & Scenario cho nhóm các chức năng quản lý tài khoản \\ \hline
+        4 & Nguyễn Tô Quốc Việt & 2313898 & 100\% & Scenario cho nhóm Admin \\ \hline
+        5 & Lê Công Vinh & 2313912 & 100\% & Scenario cho nhóm IoT \\ \hline
+    \end{tabular}
+    \end{adjustbox}
+\end{table}
+    
+
+\newpage
+\setstretch{1.25}
+\tocloftpagestyle{fancy}
 \tableofcontents
 \newpage
 
@@ -180,7 +203,7 @@
 \section{Tổng quan dự án}
 
 \subsection{Bối cảnh dự án}
-Trường Đại học Bách khoa – ĐHQG TP.HCM mỗi ngày phục vụ một lượng lớn phương tiện của sinh viên, học viên cao học, nghiên cứu sinh, giảng viên, cán bộ - nhân viên và khách vãng lai. Trong bối cảnh mật độ phương tiện ngày càng tăng trong khi sức chứa bãi xe có hạn, hệ thống quản lý hiện tại đang gặp nhiều khó khăn như tình trạng ùn tắc tại cổng ra/vào vào giờ cao điểm và việc khai thác chỗ đậu xe chưa được tối ưu. 
+Trường Đại học Bách khoa - ĐHQG TP.HCM mỗi ngày phục vụ một lượng lớn phương tiện của sinh viên, học viên cao học, nghiên cứu sinh, giảng viên, cán bộ - nhân viên và khách vãng lai. Trong bối cảnh mật độ phương tiện ngày càng tăng trong khi sức chứa bãi xe có hạn, hệ thống quản lý hiện tại đang gặp nhiều khó khăn như tình trạng ùn tắc tại cổng ra/vào vào giờ cao điểm và việc khai thác chỗ đậu xe chưa được tối ưu. 
 
 
 \subsection{Mục tiêu dự án}
@@ -226,13 +249,17 @@ Ngược lại, dự án cũng xác định rõ các yếu tố ngoài phạm vi
 \subsection{Screnario cho nhóm chức năng quản lý tài khoản}
 \input{contents/screnario_quanly_tk.tex}
 
+\subsection{Screnario cho nhóm tiện ích bãi xe}
+\input{contents/screnario_parking_service.tex}
+
 \subsection{Screnario cho nhóm thanh toán}
 \input{contents/screnario_payment.tex}
 
 \subsection{Screnario cho nhóm IoT}
 \input{contents/screnario_IoT.tex}
-\subsection{Screnario cho nhóm dịch vụ bãi xe}
-\input{contents/screnario_parking_service.tex}
+
+\subsection{Screnario cho nhóm Admin}
+\input{contents/screnario_admin.tex}
 
 \section{Các non-interactive functional requirement}
 \begin{itemize}
@@ -258,4 +285,7 @@ Ngược lại, dự án cũng xác định rõ các yếu tố ngoài phạm vi
         \item Gửi nhắc nhở khi sắp hết hoặc quá thời gian thanh toán
     \end{itemize}
 \end{itemize}
+
+\input{contents/non_functional_req.tex}
+
 \end{document}

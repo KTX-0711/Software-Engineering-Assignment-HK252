@@ -46,7 +46,7 @@
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
 \hline
-\textbf{Use-case ID} \newline \textbf{Use-case name} & U3.2 \newline \textbf{Thanh toán tự động} \\ \hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U3.2 \newline \textbf{Thanh toán hóa đơn} \\ \hline
 \textbf{Use-case overview} & Cho phép người dùng thanh toán hóa đơn gửi xe thông qua cổng thanh toán BKPay. \\ \hline
 \textbf{Actors} & 1. Khách gửi xe có tài khoản. \newline 2. BKPay. \\ \hline
 \textbf{Preconditions} & 
@@ -75,7 +75,7 @@
  \\ \hline
 \textbf{Exception flow} & 
 - \textbf{E1 (Thanh toán thất bại (lỗi mạng, chưa thanh toán)):} Hiện bảng thông báo "Giao dịch thất bại".\newline 
-- \textbf{E2 (Hết hạn thanh toán):} Khóa tài khoản. \\ \hline
+- \textbf{E2 (Hết hạn thanh toán):} Gửi nhắc nhở 3 lần. Nếu vẫn chưa thanh toán thì khóa tài khoản. \\ \hline
 \end{tabularx}
 
 % --- Use Case U3.3 ---

@@ -237,6 +237,23 @@ Nhằm giải quyết các vấn đề trên, dự án này sẽ xây dựng H�
 Trong phạm vi phát triển, hệ thống bao gồm các chức năng chính để đảm bảo vận hành toàn diện. Chức năng kiểm soát ra/vào hỗ trợ ghi nhận tự động bằng thẻ định danh, cấp thẻ tạm cho khách hoặc các trường hợp ngoại lệ, và cho phép xác thực thủ công khi cần thiết. Chức năng quản lý chỗ đậu xe cung cấp khả năng cập nhật trạng thái chỗ đậu theo thời gian thực, phát hiện lỗi cảm biến và hiện thị trạng thái bãi xe như còn chỗ, gần đầy, hoặc đầy. Đối với việc thanh toán, hệ thống sẽ tự động tính phí theo chu kỳ, gửi yêu cầu thanh toán qua BKPay và hỗ trợ thanh toán tiền mặt cho khách vãng lai. Hệ thống cũng quản lý tài khoản và phân quyền thông qua việc tích hợp HCMUT\_SSO, đồng bộ dữ liệu từ HCMUT\_DATACORE. Cuối cùng, chức năng báo cáo và truy vết đảm bảo lưu toàn bộ hoạt động, phục vụ việc xuất báo cáo tài chính và vận hành.
 
 Ngược lại, dự án cũng xác định rõ các yếu tố ngoài phạm vi triển khai. Những hạng mục này bao gồm việc phát triển phần cứng IoT thực tế, phát triển một hệ thống thanh toán riêng để thay thế BKPay, triển khai quy mô toàn thành phố, cũng như việc tích hợp các công nghệ AI nâng cao như nhận diện biển số bằng deep learning.
+\subsection{Quy trình nghiệp vụ cốt lõi}
+
+\textbf{Định nghĩa Phiên gửi xe:}
+
+Phiên gửi xe là một chuỗi hành động và trạng thái liên tục của một phương tiện từ khi tiến vào bãi đỗ cho đến khi rời đi và hoàn tất nghĩa vụ tài chính. Vòng đời của một phiên gửi xe dành cho người dùng có tài khoản được chia thành 4 giai đoạn chính:
+
+\begin{itemize}
+    \item \textbf{Giai đoạn 1 - Khởi tạo phiên:} Khách hàng quẹt thẻ RFID (hoặc thẻ định danh) tại cổng vào. Hệ thống xác thực danh tính, đối chiếu biển số xe qua camera và khởi tạo một "Phiên gửi xe" mới trên cơ sở dữ liệu với trạng thái \textit{Đang hoạt động}, ghi nhận thời điểm bắt đầu.
+    
+    \item \textbf{Giai đoạn 2 - Cập nhật vị trí và Tính giờ đỗ:} Sau khi qua cổng, khách hàng di chuyển xe đến vị trí đỗ. Cảm biến IoT tại vị trí đỗ phát hiện có xe và gửi tín hiệu về Gateway. Hệ thống trung tâm liên kết vị trí đỗ này với phiên gửi xe vừa khởi tạo, đồng thời duy trì trạng thái đỗ để làm cơ sở tính toán thời gian thực tế.
+    
+    \item \textbf{Giai đoạn 3 - Kết thúc phiên:} Khách hàng di chuyển xe ra cổng và quẹt thẻ. Hệ thống đối chiếu dữ liệu cổng ra với cổng vào, xác nhận hợp lệ và đóng phiên gửi xe. Trạng thái phiên chuyển sang \textit{Đã hoàn tất}, đồng thời ghi nhận thời điểm kết thúc.
+    
+    \item \textbf{Giai đoạn 4 - Xử lý hậu kỳ:} Dựa trên tổng thời gian của phiên đỗ xe và chính sách giá đã thiết lập, hệ thống tự động tính toán chi phí cho phiên này. Chi phí này được cộng dồn vào tài khoản ghi nợ của khách hàng. Vào cuối chu kỳ (vào cuối tháng), hệ thống sẽ xuất hóa đơn tổng hợp và yêu cầu thanh toán qua BKPay.
+\end{itemize}
+
+
 
 \section{Use-case Diagram}
 \begin{figure}[H]

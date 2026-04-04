@@ -10,7 +10,7 @@
 \renewcommand{\arraystretch}{0.95}
 \begin{longtable}{|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{11.5cm}|}
 \hline
-\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.1 \newline \textbf{Giám sát hạ tầng IoT} \\ \hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.1 \newline \textbf{Theo dõi và quản lý thiết bị IoT} \\ \hline
 \endhead
 \textbf{Use-case overview} & Cho phép quản trị viên theo dõi trạng thái vận hành của toàn bộ thiết bị IoT trong hệ thống (cảm biến, gateway, bảng hiển thị điện tử), phát hiện thiết bị có sự cố và thực hiện các thao tác quản lý thiết bị khi cần thiết. \\ \hline
 \textbf{Actors} & 1. Primary: Admin \newline 2. Secondary: IoT Gateway (đẩy dữ liệu heartbeat và trạng thái thiết bị về hệ thống trung tâm theo định kỳ) \\ \hline
@@ -18,7 +18,7 @@
 1. Admin đã đăng nhập và được phân quyền quản trị hệ thống. \newline
 2. Hạ tầng IoT (cảm biến, gateway, bảng hiển thị) đã được đăng ký và cấu hình trong hệ thống. \newline
 3. Ít nhất một gateway đang duy trì kết nối với hệ thống trung tâm. \\ \hline
-\textbf{Trigger} & Admin chọn mục ``Giám sát hạ tầng IoT'' trên giao diện quản trị. \\ \hline
+\textbf{Trigger} & Admin chọn mục ``Theo dõi và quản lý thiết bị IoT'' trên giao diện quản trị. \\ \hline
 \textbf{Steps} &
 1. Hệ thống hiển thị dashboard tổng quan trạng thái thiết bị, bao gồm: tổng số thiết bị đã đăng ký, số thiết bị đang hoạt động (online), số thiết bị mất kết nối (offline), số thiết bị đang có cảnh báo (warning) — phân chia theo từng khu vực bãi đỗ và theo loại thiết bị (cảm biến / gateway / bảng hiển thị). \newline
 2. Admin chọn một thiết bị cụ thể trên dashboard để xem chi tiết. \newline
@@ -231,7 +231,7 @@
 3. Hệ thống hiển thị sơ đồ khu vực với trạng thái từng chỗ đỗ được mã hóa bằng màu sắc: trống (available), có xe (occupied), không xác định (cảm biến offline hoặc báo lỗi). \newline
 4. Admin chọn một chỗ đỗ cụ thể trên sơ đồ. \newline
 5. Hệ thống hiển thị thông tin của chỗ đỗ đó, bao gồm: mã chỗ đỗ, trạng thái hiện tại, thời điểm cập nhật trạng thái lần cuối, và mã cảm biến liên kết kèm trạng thái hoạt động của cảm biến đó. \newline
-6. Admin xem xét thông tin. Nếu cảm biến liên kết đang có sự cố, Admin có thể chuyển sang xử lý trong U5.1 (Giám sát hạ tầng IoT). \\ \hline
+6. Admin xem xét thông tin. Nếu cảm biến liên kết đang có sự cố, Admin có thể chuyển sang xử lý trong U5.1 (Theo dõi và quản lý thiết bị IoT). \\ \hline
 \textbf{Alternative flows} &
 \textbf{AF1 --- Admin xem lịch sử biến động chiếm dụng của một khu vực (tại Step 2):} \newline
 2.1. Thay vì xem sơ đồ trực tiếp, Admin chọn ``Xem lịch sử'' của khu vực đó. \newline

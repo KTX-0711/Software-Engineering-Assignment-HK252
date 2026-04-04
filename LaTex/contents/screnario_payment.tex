@@ -42,6 +42,18 @@
 
 \vspace{0.5cm}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/seq_lichsugiaodich.png}
+    \caption{Sequence diagram cho Use-case U3.1: Xem lịch sử giao dịch cá nhân}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/lichsugiaodich.png}
+    \caption{Activity diagram cho Use-case U3.1: Xem lịch sử giao dịch cá nhân}
+\end{figure}
+
 % --- Use Case U3.2 ---
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
@@ -56,11 +68,12 @@
 4. Tồn tại hóa đơn chưa thanh toán. \\ \hline
 \textbf{Trigger} & Người dùng chọn “Thanh toán hóa đơn” trên hệ thống. \\ \hline
 \textbf{Steps} & 
-1. Hệ thống chuyển sang BKPay.\newline
-2. BKPay hiển thị danh sách hóa đơn chưa thanh toán (gồm số tiền, thời hạn thanh toán). \newline
-3. Người dùng chọn “Thanh toán" trên một hóa đơn.\newline
-4. Người dùng thanh toán trên BKPay.\newline
-5. BKPay trả kết quả về hệ thống: 
+1. Hệ thống hiển thị danh sách hóa đơn (gồm số tiền, thời hạn thanh toán).\newline
+2. Người dùng chọn chuyển sang BKPay.\newline
+3. BKPay hiển thị danh sách hóa đơn chưa thanh toán. \newline
+4. Người dùng chọn “Thanh toán" trên một hóa đơn.\newline
+5. Người dùng thanh toán trên BKPay.\newline
+6. BKPay trả kết quả về hệ thống: 
 \vspace*{-10pt}
     \begin{itemize}
         \item Thành công → cập nhật trạng thái “Đã thanh toán”.
@@ -74,12 +87,24 @@
                             2. Người dùng nhận thông báo kết quả "Giao dịch thành công".
  \\ \hline
 \textbf{Exception flow} & 
-- \textbf{E1 (Thanh toán thất bại (lỗi mạng, chưa thanh toán)):} Hiện bảng thông báo "Giao dịch thất bại".\newline 
-- \textbf{E2 (Hết hạn thanh toán):} Gửi nhắc nhở 3 lần. Nếu vẫn chưa thanh toán thì khóa tài khoản. \\ \hline
+\textbf{E1 (Hết hạn thanh toán):} Gửi nhắc nhở 3 lần. Nếu vẫn chưa thanh toán thì khóa tài khoản. \\ \hline
 \end{tabularx}
 
-% --- Use Case U3.3 ---
 \vspace{0.5cm}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/seq_thanhtoanhoadon.png}
+    \caption{Sequence diagram cho Use-case U3.2: Thanh toán hóa đơn}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/thanhtoanhoadon.png}
+    \caption{Activity diagram cho Use-case U3.2: Thanh toán hóa đơn}
+\end{figure}
+
+% --- Use Case U3.3 ---
+
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
 \hline
@@ -111,4 +136,14 @@
 
 \vspace{0.5cm}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/seq_thanhtoanthucong.png}
+    \caption{Sequence diagram cho Use-case U3.3: Thanh toán thủ công}
+\end{figure}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/thanhtoanthucong.png}
+    \caption{Activity diagram cho Use-case U3.3: Thanh toán thủ công}
+\end{figure}

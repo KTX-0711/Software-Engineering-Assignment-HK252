@@ -1,6 +1,8 @@
 % =====================================================================
 % NOTE: Để file này hoạt động, thêm vào preamble của main.tex:
 %   \usepackage{longtable}
+%   \usepackage{float}
+%   \usepackage{graphicx}
 % =====================================================================
 
 % --- Use Case U5.1 ---
@@ -48,6 +50,19 @@
 \textbf{E3 (Dữ liệu cảm biến bất thường):} Nếu một cảm biến thay đổi trạng thái hơn 10 lần trong vòng 60 giây, hệ thống đánh dấu cảnh báo ``dữ liệu không nhất quán'' trên thiết bị đó và đề xuất admin kiểm tra thiết bị thực địa. \\ \hline
 \end{longtable}
 } % Đóng scope của \small
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc51_sequence}
+    \caption{Sequence Diagram --- UC5.1: Theo dõi và quản lý thiết bị IoT}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc51_activity}
+    \caption{Activity Diagram --- UC5.1: Theo dõi và quản lý thiết bị IoT}
+\end{figure}
+
 \newpage
 
 % --- Use Case U5.2 ---
@@ -94,6 +109,19 @@
 - \textbf{E2 (Thông tin không hợp lệ):} Nếu admin bỏ trống trường bắt buộc hoặc số điện thoại sai định dạng, hệ thống hiển thị lỗi tại trường tương ứng. \\ \hline
 \end{longtable}
 }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc52_sequence}
+    \caption{Sequence Diagram --- UC5.2: Quản lý tài khoản nhân viên}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc52_activity}
+    \caption{Activity Diagram --- UC5.2: Quản lý tài khoản nhân viên}
+\end{figure}
+
 \newpage
 
 % --- Use Case U5.3 ---
@@ -130,6 +158,19 @@
 - \textbf{E2 (Khoảng thời gian không hợp lệ):} Nếu ngày bắt đầu lớn hơn ngày kết thúc hoặc admin bỏ trống, hệ thống hiển thị lỗi và yêu cầu chọn lại. \\ \hline
 \end{longtable}
 }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc53_sequence}
+    \caption{Sequence Diagram --- UC5.3: Xuất báo cáo}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc53_activity}
+    \caption{Activity Diagram --- UC5.3: Xuất báo cáo}
+\end{figure}
+
 \newpage
 
 % --- Use Case U5.4 ---
@@ -171,6 +212,19 @@
 - \textbf{E3 (Giá trị bất thường):} Nếu đơn giá mới chênh lệch hơn 200\% so với đơn giá hiện tại, hệ thống hiển thị cảnh báo "Đơn giá thay đổi bất thường" và yêu cầu admin xác nhận thêm một lần nữa trước khi lưu. \\ \hline
 \end{longtable}
 }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc54_sequence}
+    \caption{Sequence Diagram --- UC5.4: Thay đổi chính sách giá}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc54_activity}
+    \caption{Activity Diagram --- UC5.4: Thay đổi chính sách giá}
+\end{figure}
+
 \newpage
 
 % --- Use Case U5.5 ---
@@ -207,6 +261,19 @@
 - \textbf{E2 (Khoảng thời gian không hợp lệ):} Nếu ngày bắt đầu lớn hơn ngày kết thúc hoặc bỏ trống, hệ thống hiển thị lỗi và yêu cầu chọn lại. \\ \hline
 \end{longtable}
 }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc55_sequence}
+    \caption{Sequence Diagram --- UC5.5: Truy cập nhật ký hệ thống}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc55_activity}
+    \caption{Activity Diagram --- UC5.5: Truy cập nhật ký hệ thống}
+\end{figure}
+
 \newpage
 
 % --- Use Case U5.6 ---
@@ -252,4 +319,17 @@
 \textbf{E2 (Dữ liệu cảm biến lỗi thời):} Nếu thời điểm cập nhật trạng thái của một chỗ đỗ vượt quá 5 phút so với thời điểm hiện tại, hệ thống gắn nhãn ``dữ liệu có thể lỗi thời'' trên chỗ đỗ đó trong sơ đồ và hiển thị thời điểm cập nhật lần cuối để Admin tự đánh giá độ tin cậy. \\ \hline
 \end{longtable}
 } % Đóng scope của \small
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc56_sequence}
+    \caption{Sequence Diagram --- UC5.6: Giám sát tình trạng bãi đỗ xe}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/uc56_activity}
+    \caption{Activity Diagram --- UC5.6: Giám sát tình trạng bãi đỗ xe}
+\end{figure}
+
 \newpage

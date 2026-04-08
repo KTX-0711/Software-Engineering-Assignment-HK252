@@ -101,6 +101,9 @@
 }
 
 %------------------------- tocloft settings -------------------------%
+\renewcommand{\listfigurename}{DANH MỤC HÌNH ẢNH}
+
+
 \setlength{\cftbeforesecskip}{0pt} % Space before each section entry
 \setlength{\cftsecnumwidth}{2em}   % Width of the section number
 \setlength{\cftsubsecindent}{3em}  % Indentation for subsections
@@ -195,6 +198,14 @@
 \setstretch{1.25}
 \tocloftpagestyle{fancy}
 \tableofcontents
+
+
+\newpage
+
+
+\cleardoublepage
+\addcontentsline{toc}{section}{\listfigurename} % Đưa danh mục hình ảnh vào mục lục
+\listoffigures
 \newpage
 
 
@@ -255,27 +266,70 @@ Phiên gửi xe là một chuỗi hành động và trạng thái liên tục c�
 
 
 
-\section{Use-case Diagram}
+\section{Tổng quan chức năng và ranh giới hệ thống}
+\subsection{Tổng quan chức năng}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{pictures/usecase_diagram.png}
+    \includegraphics[width=0.9\textwidth]{pictures/usecase_diagram.png}
     \caption{Use-case Diagram dành cho toàn bộ dự án này.}
 \end{figure}
 
-\section{Screnario cho các nhóm chức năng}
-\subsection{Screnario cho nhóm chức năng quản lý tài khoản}
+Hệ thống IoT-SPMS được thiết kế nhằm tối ưu hóa quy trình quản lý bãi xe thông qua việc phân tách rõ ràng các nhóm chức năng. Để đảm bảo tính toàn diện, các chức năng được chia thành hai hướng tiếp cận chính: hướng người dùng cuối và hướng vận hành hệ thống.
+\subsubsection{Nhóm chức năng hướng người dùng}
+Nhóm chức năng này tập trung vào việc cung cấp trải nghiệm thuận tiện và nhanh chóng cho sinh viên, cán bộ và khách vãng lai.
+\begin{itemize}
+    \item \textbf{Quản lý định danh và tài khoản:} Hỗ trợ đăng nhập qua hệ thống xác thực tập trung HCMUT\_SSO và đồng bộ thông tin cá nhân từ DATACORE.
+    \item \textbf{Tiện ích gửi xe cá nhân:} Cho phép người dùng tự đăng ký biển số xe trực tuyến, đăng ký các gói gửi xe theo tháng và theo dõi sơ đồ vị trí trống trong bãi xe theo thời gian thực.
+    \item \textbf{Tương tác ra/vào bãi:} Thực hiện quy trình quẹt thẻ và xác thực biển số xe tự động tại các cổng kiểm soát.
+    \item \textbf{Thanh toán và tra cứu:} Người dùng có thể xem lại toàn bộ lịch sử giao dịch cá nhân và thực hiện thanh toán hóa đơn điện tử thông qua cổng BKPay.
+\end{itemize}
+
+\subsubsection{Nhóm chức năng hướng vận hành}
+Nhóm chức năng này phục vụ đội ngũ nhân viên và Admin nhằm đảm bảo hệ thống luôn hoạt động ổn định và minh bạch.
+\begin{itemize}
+    \item \textbf{Hỗ trợ vận hành trực tiếp:} Cung cấp giao diện cho nhân viên bãi xe thực hiện xác nhận ra/vào thủ công, cấp phát thẻ tạm cho khách vãng lai và xử lý các tình huống ngoại lệ tại cổng.
+    \item \textbf{Giám sát hạ tầng IoT:} Theo dõi trạng thái hoạt động (online/offline) của các cảm biến và Gateway; tự động tiếp nhận thông báo cảnh báo khi có thiết bị gặp sự cố hoặc gửi dữ liệu bất thường.
+    \item \textbf{Quản trị chính sách và nhân sự:} Cho phép Admin cấu hình linh hoạt chính sách giá gửi xe theo khung giờ và đối tượng; quản lý và phân quyền tài khoản cho đội ngũ nhân viên vận hành.
+    \item \textbf{Kiểm soát và báo cáo tài chính:} Hệ thống tự động tổng hợp phí gửi xe, tạo hóa đơn định kỳ và hỗ trợ xuất các báo cáo thống kê doanh thu, lưu lượng xe phục vụ công tác hậu kiểm.
+    \item \textbf{Truy vết hệ thống:} Cung cấp khả năng truy cập nhật ký raw (Logs) để điều tra sự cố và kiểm toán các hành động thay đổi dữ liệu trong hệ thống.
+\end{itemize}
+
+
+
+\section{Ranh giới hệ thống}
+Ranh giới hệ thống xác định giới hạn mà phần mềm IoT-SPMS trực tiếp quản lý và xử lý dữ liệu, phân tách với các tác nhân con người và các hệ thống ngoại vi. Cụ thể được phân định như sau:
+
+\subsubsection{Bên trong ranh giới hệ thống}
+\begin{itemize}
+    \item \textbf{Logic xử lý nghiệp vụ:} Bao gồm việc khởi tạo và quản lý phiên gửi xe, tự động hóa quy trình kiểm soát ra/vào và tính toán chi phí dựa trên các chính sách giá đã thiết lập.
+    \item \textbf{Quản lý dữ liệu tập trung:} Lưu trữ và xử lý thông tin biển số xe đã đăng ký, trạng thái chiếm dụng chỗ đỗ theo thời gian thực, lịch sử giao dịch và nhật ký hệ thống phục vụ kiểm toán.
+    \item \textbf{Giao diện người dùng:} Cung cấp các màn hình chức năng cho người dùng như xem sơ đồ bãi xe, lịch sử thanh toán và Dashboard quản trị cho Admin để giám sát thiết bị IoT, xuất báo cáo thống kê.
+    \item \textbf{Hệ thống thông báo:} Tự động tạo và gửi các cảnh báo khi phát hiện lỗi cảm biến hoặc gửi nhắc nhở thanh toán hóa đơn cho người dùng.
+\end{itemize}
+
+\subsubsection{Bên ngoài ranh giới hệ thống}
+\begin{itemize}
+    \item \textbf{Các hệ thống định danh và dữ liệu của trường:} Hệ thống kết nối và truy vấn thông tin từ \textit{HCMUT\_SSO} để xác thực và \textit{HCMUT\_DATACORE} để đồng bộ vai trò người dùng. Hệ thống không trực tiếp quản lý kho dữ liệu gốc của các đơn vị này.
+    \item \textbf{Cổng thanh toán ngoại vi:} Việc xử lý giao dịch tài chính thực tế được thực hiện hoàn toàn qua \textit{BKPay}. Hệ thống IoT-SPMS chỉ gửi yêu cầu thanh toán và nhận kết quả phản hồi thông qua cơ chế Webhook.
+    \item \textbf{Hạ tầng phần cứng IoT:} Mặc dù hệ thống tiếp nhận dữ liệu từ các \textit{IoT Sensors \& Gateway}, nhưng việc vận hành vật lý, bảo trì phần cứng và phát triển firmware cho các thiết bị này nằm ngoài phạm vi phần mềm của dự án.
+    \item \textbf{Tác nhân con người:} Bao gồm Sinh viên, Giảng viên, Khách vãng lai, Nhân viên vận hành và Admin. Đây là các đối tượng tương tác với hệ thống qua các thiết bị đầu cuối nhưng không thuộc quyền kiểm soát nội tại của logic phần mềm.
+\end{itemize}
+
+\section{Screnario và các diagram cho các nhóm chức năng}
+\subsection{Nhóm chức năng quản lý tài khoản}
 \input{contents/screnario_quanly_tk.tex}
 
-\subsection{Screnario cho nhóm tiện ích bãi xe}
+\subsection{Nhóm tiện ích bãi xe}
 \input{contents/screnario_parking_service.tex}
 
-\subsection{Screnario cho nhóm thanh toán}
+\subsection{Nhóm thanh toán}
 \input{contents/screnario_payment.tex}
 
-\subsection{Screnario cho nhóm IoT}
+\subsection{Nhóm IoT}
 \input{contents/screnario_IoT.tex}
 
-\subsection{Screnario cho nhóm Admin}
+\subsection{Nhóm Admin}
 \input{contents/screnario_admin.tex}
 
 \section{Các non-interactive functional requirement}

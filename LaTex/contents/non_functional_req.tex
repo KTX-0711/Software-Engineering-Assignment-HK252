@@ -32,4 +32,12 @@
         \item Metric: 100\% nội dung giao diện người dùng (label, thông báo, hướng dẫn) phải có bản dịch đầy đủ cho cả hai ngôn ngữ. % [cite: 219]
         Người dùng có thể chuyển đổi ngôn ngữ mà không cần đăng nhập lại. % [cite: 220]
     \end{itemize}
+
+
+
+    \item \textbf{NFR6 - Khả năng chịu lỗi (Fault Tolerance):} Hệ thống phải có cơ chế dự phòng để duy trì hoạt động cơ bản hoặc bảo toàn dữ liệu khi một thành phần (sensor, gateway hoặc kết nối mạng) gặp sự cố.
+    \vspace*{-5pt}
+    \begin{itemize}
+        \item Metric: Khi mất kết nối Internet, Gateway phải có khả năng lưu trữ tạm thời (local buffering) ít nhất 24 giờ dữ liệu và tự động đồng bộ lại khi có kết nối. Thời gian phục hồi hệ thống sau sự cố (MTTR) không quá 30 phút.
+    \end{itemize}
 \end{itemize}

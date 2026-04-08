@@ -1,4 +1,5 @@
 
+\subsubsection{Use-case U4.1: Cập nhật trạng thái vị trí đỗ}
 \vspace{0.5cm}
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
@@ -22,9 +23,28 @@
 \end{tabularx}
 \newpage
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/seq_4.1.png}
+    \caption{Sequence Diagram --- U4.1: Cập nhật trạng thái vị trí đỗ}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pictures/act_4.1.png}
+    \caption{Activity Diagram --- U4.1: Cập nhật trạng thái vị trí đỗ}
+\end{figure}
+\newpage
 
 
 
+
+
+
+
+
+
+\subsubsection{Use-case U4.2: Hiển thị trạng thái bãi xe}
 \vspace{0.5cm}
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
@@ -40,7 +60,7 @@
 \textbf{Steps} & 
 1. Hệ thống tiếp nhận yêu cầu xem trạng thái bãi xe từ User.\newline
 2. Hệ thống truy xuất cơ sở dữ liệu để lấy dữ liệu trạng thái mới nhất của tất cả các vị trí đỗ.\newline
-3. Hệ thống hiển vị trí chính xác của những vị trí chỗ trống/đã có xe và xuất lên giao diện dưới dạng sơ đồ bãi đỗ, màu xanh tương đương với trống và màu đỗ là đã có xe. \\ \hline
+3. Hệ thống hiển vị trí chính xác của những vị trí chỗ trống/đã có xe và xuất lên giao diện dưới dạng sơ đồ bãi đỗ chứa các thông tin như: và mũi tên hướng dẫn đến vị trí đỗ xe gần nhất, trạng thái vị trí đỗ có trống hay không, bãi giữ xe có đang đầy hay không. \\ \hline
 \textbf{Post conditions} & Giao diện màn hình của User hiển thị chính xác và trực quan trạng thái hiện tại của toàn bộ bãi đỗ xe. \\ \hline
 \textbf{Exception flow} & 
 - \textbf{E1 (Lỗi kết nối với CSDL trung tâm):} Hệ thống không thể lấy dữ liệu, hiển thị thông báo "Không thể tải sơ đồ bãi xe lúc này, vui lòng thử lại sau ít phút".\newline
@@ -48,9 +68,28 @@
 \end{tabularx}
 \newpage
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/seq_4.2.png}
+    \caption{Sequence Diagram --- U4.2: Hiển thị trạng thái bãi xe}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pictures/act_4.2.png}
+    \caption{Activity Diagram --- U4.2: Hiển thị trạng thái bãi xe}
+\end{figure}
+\newpage
 
 
 
+
+
+
+
+
+
+\subsubsection{Use-case U4.3: Thông báo cảm biến lỗi}
 \vspace{0.5cm}
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
@@ -74,3 +113,18 @@
 - \textbf{E2 (Thiết bị tự phục hồi kết nối)}: Nếu thiết bị bị mất kết nối mạng tạm thời nhưng sau đó tự kết nối lại được trước khi Admin kịp xác nhận báo lỗi, hệ thống tự động thu hồi thông báo lỗi ban đầu và thay bằng một thông báo mới "Hệ thống IoT đã tự khôi phục kết nối thành công". \\ \hline
 \end{tabularx}
 \newpage
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/seq_4.3.png}
+    \caption{Sequence Diagram --- U4.3: Thông báo cảm biến lỗi}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{pictures/act_4.3.png}
+    \caption{Activity Diagram --- U4.3: Thông báo cảm biến lỗi}
+\end{figure}
+\newpage
+

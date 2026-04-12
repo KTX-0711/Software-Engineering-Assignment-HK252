@@ -5,72 +5,6 @@
 %   \usepackage{graphicx}
 % =====================================================================
 
-% --- Use Case U5.1 ---
-\subsubsection{Use-case 5.1: Theo dõi và quản lý thiết bị IoT}
-\vspace{0.5cm}
-\noindent
-{\small
-\renewcommand{\arraystretch}{0.95}
-\begin{longtable}{|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{11.5cm}|}
-\hline
-\textbf{Use-case ID} \newline \textbf{Use-case name} & U5.1 \newline \textbf{Theo dõi và quản lý thiết bị IoT} \\ \hline
-\endhead
-\textbf{Use-case overview} & Cho phép quản trị viên theo dõi trạng thái vận hành của toàn bộ thiết bị IoT trong hệ thống (cảm biến, gateway, bảng hiển thị điện tử), phát hiện thiết bị có sự cố và thực hiện các thao tác quản lý thiết bị khi cần thiết. \\ \hline
-\textbf{Actors} & 1. Primary: Admin \newline 2. Secondary: IoT Gateway (đẩy dữ liệu heartbeat và trạng thái thiết bị về hệ thống trung tâm theo định kỳ) \\ \hline
-\textbf{Internal Components} &
-\textbf{Device Service:} Quản lý logic nghiệp vụ thiết bị, chịu trách nhiệm truy vấn trạng thái và thực hiện các lệnh bảo trì/vô hiệu hóa. \newline
-\textbf{Audit Logger:} Hệ thống ghi vết, đảm bảo tính toàn vẹn và minh bạch của mọi hành động thay đổi dữ liệu từ Admin. \newline
-\textbf{Cơ sở Dữ liệu:} Lưu trữ toàn bộ dữ liệu nghiệp vụ, tiếp nhận các yêu cầu đọc/ghi từ các service nội bộ thông qua lớp truy cập dữ liệu. \\ \hline
-\textbf{Preconditions} &
-1. Admin đã đăng nhập và được phân quyền quản trị hệ thống. \newline
-2. Hạ tầng IoT (cảm biến, gateway, bảng hiển thị) đã được đăng ký và cấu hình trong hệ thống. \newline
-3. Ít nhất một gateway đang duy trì kết nối với hệ thống trung tâm. \\ \hline
-\textbf{Trigger} & Admin chọn mục ``Theo dõi và quản lý thiết bị IoT'' trên giao diện quản trị. \\ \hline
-\textbf{Steps} &
-1. Giao diện Quản trị gửi yêu cầu lấy tổng quan thiết bị tới Device Service. Device Service truy vấn toàn bộ trạng thái thiết bị từ Cơ sở Dữ liệu và trả về: tổng số thiết bị đã đăng ký, số thiết bị đang hoạt động (online), số thiết bị mất kết nối (offline), số thiết bị đang có cảnh báo (warning) - phân chia theo từng khu vực bãi đỗ và theo loại thiết bị (cảm biến / gateway / bảng hiển thị). Giao diện Quản trị hiển thị dashboard tổng quan. \newline
-2. Admin chọn một thiết bị cụ thể trên dashboard để xem chi tiết. \newline
-3. Giao diện Quản trị gửi yêu cầu chi tiết thiết bị tới Device Service. Device Service truy vấn Cơ sở Dữ liệu và trả về thông tin chi tiết bao gồm: loại thiết bị, mã thiết bị, khu vực và vị trí lắp đặt, trạng thái hiện tại (online / offline / warning / đang bảo trì), thời điểm phản hồi lần cuối. \newline
-4. Admin xem xét thông tin và quyết định thao tác: đánh dấu bảo trì, vô hiệu hóa tạm thời, hoặc không thực hiện thêm. \newline
-5. Nếu Admin chọn ``Đánh dấu bảo trì'' hoặc ``Vô hiệu hóa tạm thời'': Giao diện Quản trị hiển thị hộp thoại xác nhận, nêu rõ hệ quả (thiết bị bị vô hiệu hóa sẽ không đóng góp dữ liệu vào hệ thống cho đến khi được kích hoạt lại). \newline
-6. Admin xác nhận. \newline
-7. Device Service gửi yêu cầu cập nhật trạng thái thiết bị tới Cơ sở Dữ liệu. Sau khi nhận xác nhận thành công, Device Service gửi yêu cầu ghi nhật ký tới Audit Logger (bao gồm adminId, deviceId, trạng thái cũ, trạng thái mới, timestamp). Giao diện Quản trị nhận phản hồi thành công và làm mới dashboard. \\ \hline
-\textbf{Alternative flows} &
-\textbf{AF1 - Admin lọc theo khu vực thay vì chọn thiết bị cụ thể (tại Step 2):} \newline
-2.1. Thay vì chọn một thiết bị, Admin chọn bộ lọc theo khu vực bãi đỗ hoặc theo loại thiết bị. \newline
-2.2. Device Service truy vấn Cơ sở Dữ liệu theo điều kiện lọc và trả về danh sách thiết bị phù hợp kèm trạng thái từng thiết bị. \newline
-2.3. Admin chọn thiết bị cần kiểm tra và tiếp tục từ Step 3. \newline\newline
-\textbf{AF2 - Admin đánh dấu bảo trì trực tiếp từ dashboard mà không vào trang chi tiết (tại Step 1):} \newline
-1.1. Admin phát hiện thiết bị ở trạng thái warning trực tiếp trên dashboard. \newline
-1.2. Admin nhấn ``Đánh dấu bảo trì'' trực tiếp trên card thiết bị. \newline
-1.3. Giao diện Quản trị hiển thị hộp thoại xác nhận như Step 5 của Basic Flow. \newline
-1.4. Admin xác nhận - Device Service cập nhật trạng thái và Audit Logger ghi nhật ký như Step 7 của Basic Flow. \newline
-1.5. UC kết thúc thành công mà không cần đi qua Step 2-6 của Basic Flow. \\ \hline
-\textbf{Post conditions} &
-1. Dashboard hiển thị trạng thái thiết bị phản ánh dữ liệu mới nhất từ hệ thống. \newline
-2. Nếu Admin thực hiện thao tác quản lý: trạng thái thiết bị được cập nhật trong Cơ sở Dữ liệu và Audit Logger ghi nhật ký hành động đầy đủ. Thiết bị bị vô hiệu hóa sẽ không được tính vào dữ liệu tổng hợp của hệ thống cho đến khi được kích hoạt lại. \newline
-3. Dữ liệu hệ thống không bị thay đổi nếu Admin chỉ xem mà không thực hiện thao tác. \\ \hline
-\textbf{Exception flow} &
-\textbf{E1 (Mất kết nối gateway):} Nếu một gateway không gửi heartbeat trong vòng 30 giây, Device Service tự động cập nhật trạng thái gateway đó sang offline và đẩy thông báo cảnh báo lên Giao diện Quản trị. Toàn bộ cảm biến và bảng hiển thị thuộc gateway đó được chuyển sang trạng thái ``không xác định''. Dữ liệu chiếm dụng chỗ đỗ ghi nhận lần cuối từ gateway đó vẫn được giữ nguyên để hiển thị nhưng được gắn nhãn ``dữ liệu có thể lỗi thời''. \newline
-\textbf{E2 (Cảm biến không phản hồi):} Nếu một cảm biến không gửi dữ liệu trong vòng 60 giây trong khi gateway của nó vẫn online, Device Service đánh dấu cảm biến đó là offline và đẩy cảnh báo lên Giao diện Quản trị để thông báo cho Admin. \newline
-\textbf{E3 (Dữ liệu cảm biến bất thường):} Nếu một cảm biến thay đổi trạng thái hơn 10 lần trong vòng 60 giây, Device Service đánh dấu cảnh báo ``dữ liệu không nhất quán'' trên thiết bị đó và đề xuất Admin kiểm tra thiết bị thực địa. \\ \hline
-\end{longtable}
-}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{pictures/uc51_sequence}
-    \caption{Sequence Diagram --- UC5.1: Theo dõi và quản lý thiết bị IoT}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{pictures/uc51_activity}
-    \caption{Activity Diagram --- UC5.1: Theo dõi và quản lý thiết bị IoT}
-\end{figure}
-
-\newpage
-
-% --- Use Case U5.2 ---
 \subsubsection{Use-case 5.2: Quản lý tài khoản nhân viên}
 \vspace{0.5cm}
 \noindent
@@ -123,7 +57,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pictures/uc52_sequence}
+    \includegraphics[width=0.6\textwidth]{pictures/uc52_sequence}
     \caption{Sequence Diagram --- UC5.2: Quản lý tài khoản nhân viên}
 \end{figure}
 
@@ -235,7 +169,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{pictures/uc54_sequence}
+    \includegraphics[width=0.8\linewidth]{pictures/uc54_sequence}
     \caption{Sequence Diagram --- UC5.4: Thay đổi chính sách giá}
 \end{figure}
 

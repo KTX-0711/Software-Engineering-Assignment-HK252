@@ -261,7 +261,13 @@ Phiên gửi xe là một chuỗi hành động và trạng thái liên tục c�
     
     \item \textbf{Giai đoạn 3 - Kết thúc phiên:} Khách hàng di chuyển xe ra cổng và quẹt thẻ. Hệ thống đối chiếu dữ liệu cổng ra với cổng vào, xác nhận hợp lệ và đóng phiên gửi xe. Trạng thái phiên chuyển sang \textit{Đã hoàn tất}, đồng thời ghi nhận thời điểm kết thúc.
     
-    \item \textbf{Giai đoạn 4 - Xử lý hậu kỳ:} Dựa trên tổng thời gian của phiên đỗ xe và chính sách giá đã thiết lập, hệ thống tự động tính toán chi phí cho phiên này. Chi phí này được cộng dồn vào tài khoản ghi nợ của khách hàng. Vào cuối chu kỳ (vào cuối tháng), hệ thống sẽ xuất hóa đơn tổng hợp và yêu cầu thanh toán qua BKPay.
+    \item \textbf{Giai đoạn 4 - Xử lý hậu kỳ:} Dựa trên tổng thời gian của phiên đỗ xe và chính sách giá đã thiết lập, 
+    hệ thống tự động tính toán chi phí cho phiên này. Chi phí này được cộng dồn vào tài khoản ghi nợ của khách hàng. 
+    Lúc này, phiên gửi xe sẽ được chuyển sang trạng thái \textit{Chờ thanh toán}. Sau khi khách hàng hoàn tất nghĩa vụ tài chính vào cuối tháng, phiên sẽ chính thức khép lại với trạng thái \textit{Đã thanh toán}.
+
+    \item \textbf{Giai đoạn ngoại lệ: } Trong quá trình hoạt động, nếu xảy ra sự cố (khách mất thẻ, xe lưu bãi quá thời gian quy định, lỗi cảm biến, ...), phiên gửi xe sẽ bị treo ở trạng thái \textit{Ngoại lệ}. 
+    Lúc này, cần sự can thiệp thủ công của nhân viên vận hành để xác minh và đóng phiên hợp lệ.
+
 \end{itemize}
 
 

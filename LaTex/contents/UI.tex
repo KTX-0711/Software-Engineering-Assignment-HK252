@@ -146,26 +146,48 @@ Tại nhóm giao diện này, hệ thống cung cấp các chức năng cốt l�
 
 \begin{figure}[H]
     \centering
-    % Hình 1 bên trái
-    \begin{subfigure}[b]{0.45\textwidth} % Độ rộng chiếm 45% chiều rộng văn bản
+    % Hàng 1
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pictures/QLtknhanvien.png}
+        \caption{Giao diện quản lý các tài khoản nhân viên}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pictures/Thaydoichinhsach.png}
+        \caption{Giao diện nới Admin thay đổi phí gửi xe}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pictures/nhatky.jpg}
+        \caption{Giao diện thông tin nhật ký hệ thống}
+    \end{subfigure}
+
+    \vspace{1cm} % Khoảng cách giữa hai hàng
+
+    % Hàng 2
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{pictures/baocao.jpg}
+        \caption{Giao diện Admin xuất ra các báo cáo cần thiết}
+    \end{subfigure}
+        \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \includegraphics[width=\linewidth]{pictures/notice1.png}
-        \caption{Giao diện thông báo khi có sự cố ở thiết bị IoT}
-        \label{fig:statechart1}
+        \caption{Giao diện thông báo khi thiết bị IoT gặp sự cố}
     \end{subfigure}
-    \hfill % Khoảng trống linh hoạt giữa hai hình
-    % Hình 2 bên phải
-    \begin{subfigure}[b]{0.45\textwidth} % Độ rộng chiếm 45% chiều rộng văn bản
+        \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{pictures/notice2.png} % Điều chỉnh width một chút để cân đối hơn nếu cần
-        \caption{Giao diện thông báo khi Admin bỏ quên việc xác nhận sự cố thiết bị IoT}
-        \label{fig:statechart2}
+        \includegraphics[width=\linewidth]{pictures/notice2.png}
+        \caption{Giao diện cảnh báo khi Admin chưa xác nhận các thiết bị IoT lỗi}
     \end{subfigure}
-    
-    % Chú thích chung cho cả cụm hình (tùy chọn)
-    \caption{Các giao diện thông báo tình trạng thiết bị IoT}
-    \label{fig:both_statecharts}
+
+    \caption{Tổng hợp các giao diện cho các chức năng của Admin}
+    \label{fig:iot_emergency_workflow}
 \end{figure}
 
-
-
+Nhóm giao diện dành riêng cho Quản trị viên (Admin) được thiết kế với tiêu chí trực quan, hiện đại và tối ưu hóa trải nghiệm người dùng. Thông qua hệ thống chức năng toàn diện này, Admin có thể dễ dàng thực hiện và kiểm soát mọi hoạt động cốt lõi, từ việc quản lý tài khoản nhân viên, điều chỉnh linh hoạt các chính sách về giá phí, cho đến việc trích xuất báo cáo và theo dõi nhật ký hoạt động chi tiết. Đặc biệt, phân hệ giám sát thiết bị IoT tích hợp cơ chế cảnh báo thời gian thực và nhắc nhở tự động không chỉ giúp Admin nắm bắt ngay lập tức các sự cố phát sinh, mà còn ngăn ngừa rủi ro do sơ suất trong quá trình xử lý, đảm bảo toàn bộ quy trình vận hành luôn diễn ra an toàn, minh bạch và đạt hiệu suất cao nhất.

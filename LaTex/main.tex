@@ -131,7 +131,7 @@
     \includegraphics[width=0.5\textwidth]{hcmut.png}\\[0.3cm]
     
     % Title and Subtitle
-    \textbf{\LARGE{BÁO CÁO BTL LẦN 1}}\\[0.2cm]
+    \textbf{\LARGE{BÁO CÁO BTL LẦN 2}}\\[0.2cm]
     \textbf{\Large{CÔNG NGHỆ PHẦN MỀM (CO3001)}}\\[0.6cm]
     
     % Group Info
@@ -157,7 +157,7 @@
    
     
     % Date
-    \textbf{\large{THÀNH PHỐ HỒ CHÍ MINH, THÁNG 2 NĂM 2026}}
+    \textbf{\large{THÀNH PHỐ HỒ CHÍ MINH, THÁNG 4 NĂM 2026}}
 \end{titlepage}
 
 
@@ -185,11 +185,11 @@
     \begin{tabular}{|c|l|c|c|c|}
         \hline
         \textbf{STT} & \multicolumn{1}{c|}{\textbf{Họ và tên}} & \textbf{MSSV} & \textbf{Đóng góp} & \textbf{Công việc cá nhân} \\ \hline
-        1 & Nguyễn Văn Hùng & 2311301 & 100\% & Scenario cho nhóm thanh toán  \\ \hline
-        2 & Trần Minh Trí & 2313626 & 100\% & Scenario cho nhóm tiện ích bãi xe \\ \hline
-        3 & Nguyễn Lưu Khánh Trình & 2313638 & 100\% & Scenario cho nhóm các chức năng quản lý tài khoản \\ \hline
-        4 & Nguyễn Tô Quốc Việt & 2313898 & 100\% & Scenario cho nhóm Admin \\ \hline
-        5 & Lê Công Vinh & 2313912 & 100\% & Scenario cho nhóm IoT \\ \hline
+        1 & Nguyễn Văn Hùng & 2311301 & 100\% & Scenario cho nhóm thanh toán và các diagram tương ứng  \\ \hline
+        2 & Trần Minh Trí & 2313626 & 100\% & Scenario cho nhóm tiện ích bãi xe và các diagram tương ứng\\ \hline
+        3 & Nguyễn Lưu Khánh Trình & 2313638 & 100\% & Scenario cho nhóm các chức năng quản lý tài khoản và các diagram tương ứng \\ \hline
+        4 & Nguyễn Tô Quốc Việt & 2313898 & 100\% & Scenario cho nhóm Admin và các diagram tương ứng \\ \hline
+        5 & Lê Công Vinh & 2313912 & 100\% & Scenario cho nhóm IoT và các diagram tương ứng\\ \hline
     \end{tabular}
     \end{adjustbox}
 \end{table}
@@ -262,7 +262,12 @@ Phiên gửi xe là một chuỗi hành động và trạng thái liên tục c�
     
     \item \textbf{Giai đoạn 3 - Kết thúc phiên:} Khách hàng di chuyển xe ra cổng và quẹt thẻ. Hệ thống đối chiếu dữ liệu cổng ra với cổng vào, xác nhận hợp lệ và đóng phiên gửi xe. Trạng thái phiên chuyển sang \textit{Đã hoàn tất}, đồng thời ghi nhận thời điểm kết thúc.
     
-    \item \textbf{Giai đoạn 4 - Xử lý hậu kỳ:} Dựa trên tổng thời gian của phiên đỗ xe và chính sách giá đã thiết lập, hệ thống tự động tính toán chi phí cho phiên này. Chi phí này được cộng dồn vào tài khoản ghi nợ của khách hàng. Vào cuối chu kỳ (vào cuối tháng), hệ thống sẽ xuất hóa đơn tổng hợp và yêu cầu thanh toán qua BKPay.
+        \item \textbf{Giai đoạn 4 - Xử lý hậu kỳ:} Dựa trên tổng thời gian của phiên đỗ xe và chính sách giá đã thiết lập, 
+    hệ thống tự động tính toán chi phí cho phiên này. Chi phí này được cộng dồn vào tài khoản ghi nợ của khách hàng. 
+    Lúc này, phiên gửi xe sẽ được chuyển sang trạng thái \textit{Chờ thanh toán}. Sau khi khách hàng hoàn tất nghĩa vụ tài chính vào cuối tháng, phiên sẽ chính thức khép lại với trạng thái \textit{Đã thanh toán}.
+
+    \item \textbf{Giai đoạn ngoại lệ: } Trong quá trình hoạt động, nếu xảy ra sự cố (khách mất thẻ, xe lưu bãi quá thời gian quy định, lỗi cảm biến, ...), phiên gửi xe sẽ bị treo ở trạng thái \textit{Ngoại lệ}. 
+    Lúc này, cần sự can thiệp thủ công của nhân viên vận hành để xác minh và đóng phiên hợp lệ.
 \end{itemize}
 
 

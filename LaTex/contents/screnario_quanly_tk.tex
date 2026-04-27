@@ -1,6 +1,5 @@
 % --- Use Case U1.1 ---
 \subsubsection{Use-case U1.1: Đăng nhập vào hệ thống xác thực tập trung (SSO)}
-\vspace{0.5cm}
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
 \hline
@@ -25,21 +24,21 @@
 8. Hệ thống chuyển hướng người dùng đến màn hình điều khiển chính. \\ \hline
 \textbf{Post conditions} & Người dùng đã được xác thực, phiên làm việc được thiết lập và quyền hạn đã được phân định dựa trên vai trò từ DATACORE. \\ \hline
 \textbf{Exception flow} & 
-- \textbf{E1 (Thông tin không chính xác):} Hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại mật khẩu.\newline 
-- \textbf{E2 (Lỗi kết nối):} Thông báo máy chủ không phản hồi nếu không thể kết nối SSO hoặc DATACORE.\newline
-- \textbf{E3 (Tài khoản bị khóa):} Thông báo lý do và hướng dẫn liên hệ quản trị viên. \\ \hline
+- \textbf{E1 (Thông tin không chính xác):} Hệ thống nhận mã lỗi từ HCMUT\_SSO. Hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại mật khẩu. \newline 
+- \textbf{E2 (Lỗi kết nối):} Hệ thống không nhận được phản hồi từ HCMUT\_SSO hoặc DATACORE sau 5s. Sau đó thông báo máy chủ không phản hồi nếu không thể kết nối SSO hoặc DATACORE.\newline
+- \textbf{E3 (Tài khoản bị khóa):} HCMUT\_SSO trả về trạng thái tài khoản đang bị tạm ngưng. Thông báo lý do và hướng dẫn liên hệ quản trị viên. \\ \hline
 \end{tabularx}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{pictures/SeqDiagramUC1-Trang-1.drawio.png}
+    \includegraphics[width=0.7\textwidth]{pictures/new_seq_diagram_uc1_1.png}
     \caption{Sequence diagram cho Use-case U1.1: Đăng nhập vào hệ thống xác thực tập trung (SSO)}
     \label{fig:my_image}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{pictures/activity_diagram_usecase1.png}
+    \includegraphics[width=1\textwidth]{pictures/new_act_diagram_uc1_1.png}
     \caption{Activity diagram cho Use-case U1.1: Đăng nhập vào hệ thống xác thực tập trung (SSO)}
     \label{fig:my_image}
 \end{figure}

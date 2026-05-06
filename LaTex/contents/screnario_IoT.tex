@@ -18,7 +18,8 @@
 \textbf{Post conditions} & Trạng thái mới nhất của vị trí đỗ xe được lưu trữ chính xác trong cơ sở dữ liệu của hệ thống. \\ \hline
 \textbf{Exception flow} & 
 - \textbf{E1 (Mất kết nối mạng):} IoT Gateway không thể gửi dữ liệu lên hệ thống. Dữ liệu trạng thái sẽ được lưu cục bộ tại Gateway và tự động đồng bộ lại ngay khi kết nối được khôi phục. \newline 
-- \textbf{E2 (Dữ liệu không hợp lệ)}: Nếu hệ thống phát hiện gói tin sai cấu trúc hoặc cảm biến không tồn tại trong danh mục, hệ thống sẽ từ chối lưu bản ghi và tự động ghi lại lỗi để Admin kiểm tra. \\ \hline
+- \textbf{E2 (Dữ liệu không hợp lệ)}: Nếu hệ thống phát hiện gói tin sai cấu trúc, hệ thống sẽ từ chối lưu bản ghi và tự động ghi lại lỗi để Admin kiểm tra. \newline 
+- \textbf{E3 (Thiết bị không có trong danh sách):} Nếu hệ thống phát hiện gói tin được gửi từ một thiết bị nằm trong danh sách thiết bị, hệ thống sẽ từ chối lưu bản ghi và tự động ghi lại lỗi để Admin kiểm tra. \\ \hline
 \end{tabularx}
 \newpage
 

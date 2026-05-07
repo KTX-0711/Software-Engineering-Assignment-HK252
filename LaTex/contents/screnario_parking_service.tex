@@ -18,8 +18,9 @@
 3. Hệ thống kiểm tra tài khoản trên HCMUT\_DATACORE.\newline
 4. Hệ thống kích hoạt camera chụp biển số xe.\newline
 5. Hệ thống kiểm tra biển số có khớp với dữ liệu đã đăng ký.\newline
-6. Nếu hợp lệ, hệ thống ghi nhận lượt xe và cập nhật vị trí trên Parking Map sau 5s cảm biến ổn định. \\ \hline
+6. Nếu hợp lệ, hệ thống ghi nhận lượt xe và cập nhật vị trí trên Parking Map sau 5s cảm biến ổn định.  \newline
 7. Hệ thống khởi tạo "Phiên gửi xe", bắt đầu ghi nhận thời gian đỗ xe thực tế để làm cơ sở tính phí.
+\\ \hline
 \textbf{Alternative flow} &
 A1: Nếu khách không đăng ký gói tháng, hệ thống tự động cộng dồn phí gửi xe.\newline
 A2: Nếu khách có gói tháng còn hiệu lực, hệ thống bỏ qua bước tính phí. \\ \hline
@@ -56,13 +57,14 @@ E2: Biển số không khớp với đăng ký, hệ thống báo lỗi và rào
 
 
 % --- Use Case U2.2 ---
+% --- Use Case U2.2 ---
 \subsubsection{Use-case U2.2: Xác nhận ra vào thủ công}
 \vspace{0.5cm}
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
 \hline
 \textbf{Use-case ID} \newline \textbf{Use-case name} & U2.2 \newline \textbf{Xác nhận ra vào thủ công} \\ \hline
-\textbf{Use-case overview} & Nhân viên hỗ trợ khách gửi xe không có tài khoản bằng thẻ từ và thanh toán tiền mặt. \\ \hline
+\textbf{Use-case overview} & Nhân viên hỗ trợ khách gửi xe không có tài khoản bằng thẻ từ và thanh toán thủ công. \\ \hline
 \textbf{Actors} & 1. Khách không có tài khoản \newline 2. Nhân viên vận hành bãi xe \\ \hline
 \textbf{Preconditions} & Khách được cấp thẻ từ tại cổng vào. \\ \hline
 \textbf{Trigger} & Khách điều khiển xe đến cổng vào/ra. \\ \hline
@@ -70,19 +72,27 @@ E2: Biển số không khớp với đăng ký, hệ thống báo lỗi và rào
 \textbf{Steps} &
 1. Nhân viên cấp thẻ từ cho khách khi vào bãi.\newline
 2. Khách điều khiển xe vào bãi giữ xe.\newline
-3. Hệ thống ghi nhận lượt xe và cập nhật vị trí trên Parking Map.\newline
+3. Hệ thống ghi nhận lượt xe, chụp biển số và cập nhật vị trí trên Parking Map.\newline
 4. Khi khách ra, khách đưa thẻ từ cho nhân viên.\newline
 5. Nhân viên nhận tiền mặt từ khách.\newline
-6. Nhân viên quẹt thẻ để xác nhận lượt ra. \\ \hline
+6. Nhân viên quẹt thẻ để hệ thống đóng phiên và xác nhận lượt ra. \\ \hline
 
-\textbf{Alternative flow} & Không có. \\ \hline
+\textbf{Alternative flow} & 
+A1: Khách làm mất thẻ từ khi lấy xe.\newline
+- Bước 1: Khách báo mất thẻ cho nhân viên.\newline
+- Bước 2: Nhân viên yêu cầu xuất trình giấy tờ xe (cà vẹt) và CCCD.\newline
+- Bước 3: Nhân viên tra cứu biển số trên hệ thống để đối chiếu với hình ảnh camera lúc vào.\newline
+- Bước 4: Sau khi xác nhận đúng xe, nhân viên thu phí gửi xe và phí phạt mất thẻ.\newline
+- Bước 5: Nhân viên chọn "Xác nhận ra thủ công (Mất thẻ)" trên phần mềm để đóng phiên và mở cổng.\newline
+\newline
+A2: Khách yêu cầu thanh toán chuyển khoản thay vì tiền mặt.\newline
+- Bước 1: Nhân viên cung cấp mã QR thanh toán của bãi xe.\newline
+- Bước 2: Khách thực hiện chuyển khoản thành công, nhân viên quẹt thẻ để xác nhận lượt ra. \\ \hline
 
-\textbf{Post conditions} & Hệ thống ghi nhận lượt vào ra và nhân viên xác nhận thanh toán. \\ \hline
+\textbf{Post conditions} & Hệ thống ghi nhận lượt vào ra, đóng phiên gửi xe và nhân viên xác nhận thanh toán. \\ \hline
 
 \textbf{Exception flow} & Không có. \\ \hline
 \end{tabularx}
-
-
 
 
 \begin{figure}[H]
@@ -111,6 +121,7 @@ E2: Biển số không khớp với đăng ký, hệ thống báo lỗi và rào
 
 
 % --- Use Case U2,3 ---
+% --- Use Case U2,3 ---
 \subsubsection{Use-case U2.3: Đăng ký biển số xe}
 \vspace{0.5cm}
 \noindent
@@ -125,23 +136,23 @@ E2: Biển số không khớp với đăng ký, hệ thống báo lỗi và rào
 \textbf{Steps} &
 1. Khách nhập biển số xe và tải ảnh giấy tờ (cà vẹt).\newline
 2. Hệ thống lưu dữ liệu với trạng thái "Chờ xác nhận".\newline
-3. Hệ thống gửi thông báo tới giao diện nhân viên.\newline
-4. Nhân viên kiểm tra thông tin và đối chiếu giấy tờ.\newline
+3. Hệ thống gửi thông báo tới giao diện quản lý của nhân viên.\newline
+4. Nhân viên kiểm tra thông tin do khách nhập và đối chiếu với hình ảnh giấy tờ.\newline
 5. Nhân viên nhấn "Xác nhận duyệt".\newline
-6. Hệ thống cập nhật trạng thái "Đã duyệt" và liên kết biển số với tài khoản. \\ \hline
+6. Hệ thống cập nhật trạng thái "Đã duyệt" và liên kết biển số với tài khoản của khách. \\ \hline
 
 \textbf{Alternative flow} &
-A1: Nhân viên từ chối duyệt do thông tin không hợp lệ.\newline
-A2: Hệ thống gửi thông báo từ chối và lý do cho khách hàng. \\ \hline
+A1: Nhân viên phát hiện biển số khách nhập không khớp với hình ảnh cà vẹt (sai biển số), hoặc hình ảnh tải lên bị mờ/không hợp lệ.\newline
+A2: Nhân viên chọn "Từ chối duyệt" và nhập lý do cụ thể (Ví dụ: "Biển số không khớp với giấy tờ xe").\newline
+A3: Hệ thống cập nhật trạng thái "Từ chối" cho yêu cầu này.\newline
+A4: Hệ thống gửi thông báo (Notification) kèm lý do chi tiết để khách hàng tiến hành chỉnh sửa và đăng ký lại. \\ \hline
 
 \textbf{Post conditions} & Biển số được lưu vào hệ thống và liên kết với tài khoản khách. \\ \hline
 
 \textbf{Exception flow} &
-E1: Lỗi định dạng hoặc thiếu dữ liệu, hệ thống yêu cầu nhập lại.\newline
-E2: Biển số đã tồn tại trong hệ thống, thao tác bị chặn. \\ \hline
+E1: Lỗi định dạng biển số hoặc thiếu dữ liệu bắt buộc, hệ thống yêu cầu nhập lại ngay trên giao diện.\newline
+E2: Biển số khách nhập đã tồn tại và đang liên kết với một tài khoản khác trong hệ thống, thao tác bị chặn. \\ \hline
 \end{tabularx}
-
-
 
 \begin{figure}[H]
     \centering
@@ -169,35 +180,36 @@ E2: Biển số đã tồn tại trong hệ thống, thao tác bị chặn. \\ \
 
 
 % --- Use Case U2.4 ---
-\subsubsection{Use-case U2.4: Đăng ký gói theo tháng}
+% --- Use Case U2.4 ---
+\subsubsection{Use-case U2.4: Đăng ký / Gia hạn gói theo tháng}
 \vspace{0.5cm}
 \noindent
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{4cm}|X|}
 \hline
-\textbf{Use-case ID} \newline \textbf{Use-case name} & U2.4 \newline \textbf{Đăng ký gói theo tháng} \\ \hline
-\textbf{Use-case overview} & Khách hàng mua hoặc gia hạn gói gửi xe theo tháng qua cổng thanh toán BKPay. \\ \hline
+\textbf{Use-case ID} \newline \textbf{Use-case name} & U2.4 \newline \textbf{Đăng ký / Gia hạn gói theo tháng} \\ \hline
+\textbf{Use-case overview} & Khách hàng mua mới hoặc gia hạn gói gửi xe theo tháng qua cổng thanh toán BKPay. \\ \hline
 \textbf{Actors} & 1. Khách hàng có tài khoản \newline 2. BKPay \newline 3. HCMUT\_SSO \\ \hline
-\textbf{Preconditions} & Khách đã đăng nhập thành công qua HCMUT\_SSO. \\ \hline
-\textbf{Trigger} & Khách nhấn nút "Đăng ký gói theo tháng". \\ \hline
+\textbf{Preconditions} & Khách đã đăng nhập thành công qua HCMUT\_SSO và đã có ít nhất 1 biển số xe được duyệt. \\ \hline
+\textbf{Trigger} & Khách nhấn nút "Đăng ký gói tháng" (cho đăng ký mới) hoặc nút "Gia hạn" (cho gói đang sử dụng). \\ \hline
 
 \textbf{Steps} &
-1. Hệ thống tạo mã đơn thanh toán.\newline
-2. Hệ thống chuyển hướng khách sang cổng thanh toán BKPay.\newline
-3. Khách thực hiện thanh toán trên giao diện BKPay.\newline
-4. BKPay xác nhận giao dịch thành công.\newline
-5. Hệ thống kích hoạt hoặc gia hạn gói gửi xe.\newline
-6. Hệ thống hiển thị biên lai thanh toán và thông báo thành công. \\ \hline
+1. Khách hàng chọn biển số xe cần đăng ký gói mới, hoặc chọn gói đang sử dụng để yêu cầu gia hạn.\newline
+2. Hệ thống tính toán chi phí và tạo mã đơn thanh toán.\newline
+3. Hệ thống chuyển hướng khách sang cổng thanh toán BKPay.\newline
+4. Khách thực hiện các bước thanh toán trên giao diện BKPay.\newline
+5. BKPay gửi tín hiệu xác nhận giao dịch thành công về hệ thống.\newline
+6. Hệ thống xử lý dịch vụ: Kích hoạt gói mới (nếu đăng ký mới) hoặc cộng dồn thêm chu kỳ thời gian vào gói hiện tại (nếu gia hạn).\newline
+7. Hệ thống hiển thị biên lai thanh toán và cập nhật ngày hết hạn mới cho khách hàng. \\ \hline
 
 \textbf{Alternative flow} &
-A1: Khách hủy giao dịch trên BKPay.\newline
-A2: Hệ thống hủy đơn và quay lại trang đăng ký gói. \\ \hline
+A1: Khách nhấn "Hủy giao dịch" trên giao diện BKPay.\newline
+A2: Hệ thống nhận được thông báo hủy, tự động cập nhật trạng thái đơn thành "Đã hủy" và quay lại trang dịch vụ. \\ \hline
 
-\textbf{Post conditions} & Gói vé tháng được kích hoạt hoặc gia hạn thành công. \\ \hline
+\textbf{Post conditions} & Gói vé tháng được kích hoạt thành công hoặc thời hạn gói cũ được gia hạn thêm. \\ \hline
 
 \textbf{Exception flow} &
-E1: Quá 5 phút không hoàn thành thanh toán, hệ thống tự động hủy đơn. \\ \hline
+E1: Quá 5 phút khách hàng không hoàn thành thanh toán trên BKPay, hệ thống tự động đánh dấu đơn hàng là "Hết hạn" và hủy đơn. \\ \hline
 \end{tabularx}
-
 
 \begin{figure}[H]
     \centering

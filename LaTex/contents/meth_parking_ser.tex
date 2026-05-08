@@ -1,99 +1,120 @@
-\subsection{Usecase: Parking Service}
+\newpage
+\subsection{Các lớp cho tính năng Quản lý gửi xe (Parking Service)}
+
+Dưới đây là mô tả chi tiết cho các lớp thuộc thành phần quản lý vận hành bãi xe của hệ thống Quản lý Bãi đỗ xe Thông minh (IoT-SPMS).
+
+\subsubsection{Lớp thực thể: ParkingSession (Phiên gửi xe)}
+Lớp này lưu trữ thông tin chi tiết về một phiên gửi xe (từ lúc vào đến lúc ra) của khách hàng.
 
 \begin{itemize}
-
-    \item \textbf{updateVehicle(): bool (Class IoTDevice)}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Phát hiện sự thay đổi trạng thái tại vị trí đỗ xe (UC 2.1).
-        \item Mô tả logic: Khi có phương tiện tiến vào hoặc rời khỏi ô đỗ, cảm biến được lắp tại vị trí đó sẽ phát hiện sự thay đổi. Phương thức này gửi tín hiệu về hệ thống trung tâm để thông báo ô đỗ đang có hoặc không có xe.
+        \item \texttt{sessionID}: Mã định danh duy nhất của phiên gửi xe (String).
+        \item \texttt{customerID}: Mã khách hàng liên kết với phiên gửi (String).
+        \item \texttt{vehicleID}: Mã phương tiện liên kết với phiên gửi (String).
+        \item \texttt{licensePlate}: Biển số xe dùng để đối soát (String).
+        \item \texttt{rfidCardID}: Mã thẻ từ được sử dụng (String).
+        \item \texttt{spotID}: Mã vị trí đỗ xe (String).
+        \item \texttt{checkInTime}: Thời điểm phương tiện vào bãi (DateTime).
+        \item \texttt{checkOutTime}: Thời điểm phương tiện ra khỏi bãi (DateTime).
+        \item \texttt{fee}: Tổng số tiền phí gửi xe của phiên (Double).
+        \item \texttt{isGuestSession}: Trạng thái xác định đây là phiên của khách vãng lai (Boolean).
     \end{itemize}
-
-    \item \textbf{verifyMemberVehicle(rfid: string, licensePlate: string): bool (Class ParkingSession)}
+    \item \textbf{Phương thức:}
     \begin{itemize}
-        \item Mục đích: Xác thực phương tiện có quyền ra/vào tự động hay không (UC 2.x).
-        \item Mô tả logic: Hệ thống đối chiếu \texttt{rfid} hoặc \texttt{licensePlate} với danh sách \texttt{Vehicle} của \texttt{MemberCustomer} trong cơ sở dữ liệu. Đồng thời kiểm tra \texttt{MonthlyTicket} tương ứng có còn hiệu lực (\texttt{isValid}) hay không. Trả về \texttt{true} nếu hợp lệ.
+        \item \texttt{verifyMember(rfid, licensePlate)}: Xác thực quyền ra/vào tự động cho thẻ hoặc biển số của khách thành viên.
+        \item \texttt{processAutoCheckIn(vehicleId)}: Xử lý logic tạo phiên gửi xe tự động khi hệ thống nhận diện xe vào cổng.
+        \item \texttt{processAutoCheckOut(vehicleId)}: Xử lý logic đóng phiên gửi xe tự động khi xe ra khỏi bãi.
+        \item \textit{Ghi chú: Phương thức \texttt{calculateFee()} được quy định và mô tả chi tiết tại tính năng Thanh toán (Payment Service).}
     \end{itemize}
+\end{itemize}
 
-    \item \textbf{processAutoCheckIn(vehicleId: string): void (Class ParkingSession)}
+\subsubsection{Lớp thực thể: ParkingSpot (Vị trí đỗ xe)}
+Lớp đại diện cho một ô đỗ xe vật lý trong bãi.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Tự động tạo phiên gửi xe lúc khách vào bãi (UC 2.x).
-        \item Mô tả logic: Nếu \texttt{verifyMemberVehicle()} trả về \texttt{true}, hệ thống tự động khởi tạo đối tượng \texttt{ParkingSession} mới. Gán \texttt{checkInTime} là thời gian hiện tại, \texttt{isGuestSession = false}, và tự động gọi lệnh mở barie.
+        \item \texttt{spotID}: Mã định danh duy nhất của ô đỗ xe (String).
+        \item \texttt{status}: Trạng thái hiện tại của ô đỗ (Enum \texttt{ParkingSpot\_Status}: Available, Occupied, Maintenance).
+        \item \texttt{lastUpdate}: Thời điểm cập nhật trạng thái gần nhất (String).
     \end{itemize}
-
-    \item \textbf{processAutoCheckOut(vehicleId: string): void (Class ParkingSession)}
+    \item \textbf{Phương thức:}
     \begin{itemize}
-        \item Mục đích: Tự động kết thúc phiên gửi xe lúc khách ra bãi (UC 2.x).
-        \item Mô tả logic: Nhận diện xe tại cổng ra, tìm \texttt{ParkingSession} đang mở tương ứng với \texttt{vehicleId}. Ghi nhận \texttt{checkOutTime}, tính toán phụ phí (nếu có thông qua \texttt{calculateFee()}), đóng phiên gửi xe và tự động gọi lệnh mở barie.
+        \item \texttt{updateStatus()}: Cập nhật trạng thái ô đỗ thành có xe hoặc trống dựa trên tín hiệu từ cảm biến.
+        \item \texttt{checkAvailability()}: Kiểm tra trạng thái hiện tại xem ô đỗ có sẵn sàng tiếp nhận xe hay không.
     \end{itemize}
+\end{itemize}
 
-    \item \textbf{updateStatus(): void (Class ParkingSlot)}
+\subsubsection{Lớp thực thể: Vehicle (Phương tiện)}
+Lưu trữ thông tin về phương tiện đã được đăng ký trên hệ thống.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Cập nhật trạng thái ô đỗ trên hệ thống (UC 2.1).
-        \item Mô tả logic: Sau khi nhận dữ liệu từ cảm biến thông qua \texttt{updateVehicle()}, hệ thống sẽ thay đổi trạng thái của \texttt{ParkingSlot} từ \texttt{Available} sang \texttt{Occupied} hoặc ngược lại. Thông tin này được hiển thị ngay trên giao diện quản lý và bản đồ bãi xe theo thời gian thực.
+        \item \texttt{vehicleID}: Mã định danh của phương tiện (String).
+        \item \texttt{customerID}: Mã khách hàng sở hữu phương tiện (String).
+        \item \texttt{licensePlate}: Biển số xe thực tế (String).
     \end{itemize}
+\end{itemize}
 
-    \item \textbf{requestTemporaryCard(): bool (Class GuestCustomer)}
+\subsubsection{Lớp thực thể: RFIDCard (Thẻ từ)}
+Quản lý danh sách thẻ từ dùng để quét ra/vào cổng.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Khách vãng lai yêu cầu cấp thẻ tạm khi vào bãi (UC 2.2).
-        \item Mô tả logic: Khi xe dừng tại cổng mà hệ thống không tìm thấy thông tin tài khoản phù hợp, khách hàng có thể nhấn nút yêu cầu cấp thẻ tại kiosk. Yêu cầu này sẽ được gửi đến giao diện làm việc của nhân viên trực.
+        \item \texttt{cardID}: Mã định danh vật lý của thẻ (String).
+        \item \texttt{type}: Loại thẻ định danh (Enum \texttt{CardType}).
+        \item \texttt{isAssigned}: Trạng thái xác định thẻ đã được cấp cho ai hay chưa (Boolean).
     \end{itemize}
+\end{itemize}
 
-    \item \textbf{issueTemporaryCard(): void (Class Employee)}
+\subsubsection{Lớp điều khiển: Employee (Nhân viên vận hành)}
+Đại diện cho tác nhân nhân viên, xử lý các nghiệp vụ thủ công và quản lý phê duyệt.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Cấp thẻ tạm và cho phép khách vào bãi (UC 2.2).
-        \item Mô tả logic: Nhân viên sử dụng một thẻ RFID chưa được kích hoạt để tạo phiên gửi xe mới cho khách. Hệ thống lưu lại mã thẻ, thời gian vào và hình ảnh biển số xe, sau đó gửi tín hiệu mở barie.
+        \item \texttt{employeeID}: Mã định danh của nhân viên (String).
     \end{itemize}
-
-    \item \textbf{returnTemporaryCard(): void (Class GuestCustomer)}
+    \item \textbf{Phương thức:}
     \begin{itemize}
-        \item Mục đích: Khách trả lại thẻ tạm khi ra khỏi bãi (UC 2.2).
-        \item Mô tả logic: Tại cổng ra, khách hàng đưa lại thẻ cho nhân viên. Hệ thống sử dụng mã thẻ để truy xuất phiên gửi xe tương ứng và tính phí đỗ xe.
+        \item \texttt{issueTemporaryCard()}: Cấp thẻ tạm, tạo phiên gửi xe mới và mở barie cho khách vãng lai.
+        \item \texttt{confirmManualCheckout()}: Xác nhận thu hồi thẻ, kết thúc phiên gửi xe và mở cổng ra.
+        \item \texttt{receiveCash()}: Cập nhật trạng thái đã nhận tiền mặt từ khách hàng.
+        \item \texttt{verifyRegistration(reg)}: Phê duyệt hoặc từ chối hồ sơ đăng ký xe của khách thành viên.
     \end{itemize}
+\end{itemize}
 
-    \item \textbf{payCashToStaff(): void (Class GuestCustomer)}
+\subsubsection{Lớp điều khiển: GuestCustomer (Khách vãng lai)}
+Đại diện cho đối tượng khách không có tài khoản trên hệ thống.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Thanh toán phí gửi xe bằng tiền mặt (UC 2.2).
-        \item Mô tả logic: Sau khi hệ thống hiển thị số tiền cần thanh toán, khách hàng thực hiện thanh toán trực tiếp cho nhân viên tại quầy kiểm soát.
+        \item \texttt{licensePlate}: Biển số xe tạm thời của khách (String).
     \end{itemize}
-
-    \item \textbf{receiveCash(): void (Class Employee)}
+    \item \textbf{Phương thức:}
     \begin{itemize}
-        \item Mục đích: Xác nhận đã nhận đủ tiền từ khách hàng (UC 2.2).
-        \item Mô tả logic: Sau khi nhận tiền mặt, nhân viên thao tác xác nhận trên giao diện quản lý. Hệ thống cập nhật trạng thái thanh toán của phiên gửi xe thành công.
+        \item \texttt{requestTemporaryCard()}: Yêu cầu cấp thẻ tạm tại cổng khi vào bãi.
+        \item \texttt{returnTemporaryCard()}: Trả lại thẻ tạm tại cổng để thanh toán khi ra bãi.
+        \item \texttt{payCashToStaff()}: Thực hiện thanh toán phí gửi xe bằng tiền mặt.
     \end{itemize}
+\end{itemize}
 
-    \item \textbf{confirmManualCheckout(): void (Class Employee)}
+\subsubsection{Lớp điều khiển: MemberCustomer (Khách thành viên)}
+Đại diện cho người dùng đã đăng ký tài khoản (Sinh viên, Cán bộ).
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
     \begin{itemize}
-        \item Mục đích: Hoàn tất quy trình ra bãi thủ công (UC 2.2).
-        \item Mô tả logic: Hệ thống ghi nhận thời gian ra, kết thúc phiên gửi xe và hủy liên kết với thẻ tạm để thẻ có thể được sử dụng lại cho khách khác. Sau đó barie được mở để xe rời bãi.
+        \item \texttt{walletBalance}: Số dư hiện tại trong ví nội bộ (Double).
     \end{itemize}
-
-    \item \textbf{submitRegistrationVehicle(): void (Class MemberCustomer)}
+    \item \textbf{Phương thức:}
     \begin{itemize}
-        \item Mục đích: Gửi yêu cầu đăng ký phương tiện (UC 2.3).
-        \item Mô tả logic: Khách hàng nhập biển số xe và tải lên giấy tờ cần thiết thông qua giao diện web. Hệ thống tạo mới đối tượng \texttt{Vehicle} với trạng thái \texttt{PENDING} và chuyển yêu cầu đến nhân viên để xét duyệt.
+        \item \texttt{submitRegistration()}: Gửi yêu cầu đăng ký phương tiện mới lên hệ thống, trả về đối tượng phương tiện chờ duyệt (Vehicle).
+        \item \texttt{createSubscription(month, String)}: Khởi tạo yêu cầu đăng ký hoặc gia hạn gói gửi xe theo tháng, trả về đơn hàng thanh toán (PaymentOrder).
+        \item \textit{Ghi chú: Các phương thức \texttt{viewTransactionHistory()} và \texttt{payInvoice()} được quy định và mô tả chi tiết tại nhóm tính năng Thanh toán (Payment Service).}
     \end{itemize}
-
-    \item \textbf{verifyRegistration(regID: string, status: Registration\_Status): void (Class Employee)}
-    \begin{itemize}
-        \item Mục đích: Kiểm tra, đối soát và đưa ra quyết định phê duyệt hồ sơ đăng ký phương tiện của khách hàng (UC 2.3).
-
-        \item Mô tả logic:
-        \begin{enumerate}
-            \item Nhân viên truy xuất hồ sơ đăng ký từ danh sách chờ (\texttt{PENDING}) dựa trên \texttt{regID}.
-
-            \item Tiến hành đối chiếu hình ảnh giấy tờ xe (cà vẹt, bảo hiểm) mà khách hàng đã tải lên với biển số xe (\texttt{licensePlate}) đã nhập.
-
-            \item Nếu thông tin hợp lệ, nhân viên cập nhật trạng thái hồ sơ thành \texttt{APPROVED}. Lúc này, hệ thống sẽ tự động chuyển trạng thái của đối tượng \texttt{Vehicle} tương ứng từ \texttt{PENDING} sang \texttt{ACTIVE}, cho phép xe bắt đầu sử dụng luồng ra/vào tự động.
-
-            \item Nếu thông tin sai lệch hoặc không rõ ràng, nhân viên cập nhật trạng thái hồ sơ thành \texttt{REJECTED} và nhập lý do từ chối để hệ thống gửi thông báo phản hồi cho khách hàng.
-        \end{enumerate}
-    \end{itemize}
-
-    \item \textbf{createSubscription(): void (Class MemberCustomer)}
-    \begin{itemize}
-        \item Mục đích: Đăng ký hoặc gia hạn gói gửi xe tháng (UC 2.4).
-        \item Mô tả logic: Khi khách hàng chọn gói gửi xe tháng trên giao diện web, hệ thống sẽ tạo \texttt{MonthlyTicket} và \texttt{Invoice} tương ứng trước khi chuyển sang bước thanh toán.
-    \end{itemize}
-
 \end{itemize}

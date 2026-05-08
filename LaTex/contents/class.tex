@@ -1,0 +1,345 @@
+\subsection{Các Class trong Class Diagram}
+\subsubsection{Lớp thực thể: Account (Tài khoản)}
+Lớp này lưu trữ thông tin định danh và trạng thái của người dùng được đồng bộ từ hệ thống nhà trường.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{accountID}: Mã định danh duy nhất của tài khoản (String).
+        \item \texttt{username}: Tên đăng nhập của người dùng (String).
+        \item \texttt{password}: Mật khẩu của tài khoản người dùng (String).
+        \item \texttt{fullName}: Họ và tên đầy đủ của người dùng (String)
+        \item \texttt{role}: Vai trò của người dùng (CUSTOMER, ADMIN, EMPLOYEE) để phân quyền và áp dụng chính sách giá.
+        \item \texttt{status}: Trạng thái tài khoản (ACTIVE, DISABLED).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{updateStatus(newStatus)}: Cập nhật trạng thái mới cho tài khoản (ví dụ: khóa do nợ phí).
+        \item \textbf{isLocked(): boolean (Class Account)}
+        \begin{itemize}
+            \item Mục đích: Kiểm tra trạng thái hoạt động của tài khoản khách hàng (xem có đang bị khóa hay không).
+            \item Mô tả logic: Phương thức này truy xuất giá trị của thuộc tính isLocked trong cơ sở dữ liệu của người dùng. Hệ thống sẽ gọi hàm này ở các bước kiểm tra điều kiện (Ví dụ: trước khi cho phép xe vào bãi, hoặc ngay khi khách hàng đăng nhập) để xem tài khoản có đang bị khóa do nợ quá hạn hay không.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp thực thể: UserSession (Phiên làm việc)}
+Quản lý trạng thái và thời gian duy trì đăng nhập của người dùng sau khi xác thực thành công.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{sessionID}: Mã phiên làm việc duy nhất để bảo mật (String).
+        \item \texttt{loginTime}: Thời điểm bắt đầu đăng nhập (Time).
+        \item \texttt{expiryTime}: Thời điểm phiên làm việc hết hạn (Time).
+        \item \texttt{isActive}: Trạng thái hoạt động của phiên (Boolean).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{isValid()}: Kiểm tra phiên làm việc hiện tại còn hiệu lực hay không.
+        \item \texttt{extendSession(): void}: Gia hạn thời gian hoạt động của phiên làm việc.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp điều khiển: AuthenticationController}
+Đóng vai trò điều phối luồng đăng nhập, xử lý logic xác thực và quản lý vòng đời của session.
+
+\begin{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{processLogin(username, password)}: Tiếp nhận thông tin, gọi các dịch vụ xác thực và khởi tạo phiên làm việc.
+        \item \texttt{handleAuthError()}: Xử lý các tình huống lỗi đăng nhập (sai mật khẩu, lỗi kết nối hệ thống ngoài).
+        \item \texttt{processLogout(sessionID)}: Thực hiện quy trình hủy phiên làm việc khi người dùng đăng xuất.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp biên: HCMUTSSOConnector và HCMUTDataCoreConnector}
+Các lớp giao tiếp với hạ tầng công nghệ hiện có của HCMUT.
+
+\begin{itemize}
+    \item \textbf{HCMUTSSOConnector}: 
+    \begin{itemize}
+        \item \texttt{authenticateUser(user, pass)}: Gửi yêu cầu xác thực tới máy chủ HCMUT\_SSO và nhận mã xác thực thành công hoặc lỗi.
+    \end{itemize}
+    \item \textbf{HCMUTDataCoreConnector}:
+    \begin{itemize}
+        \item \texttt{fetchUserRole(accountID)}: Truy vấn vai trò người dùng từ DATACORE ở chế độ chỉ đọc để đồng bộ dữ liệu.
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{Lớp thực thể: ParkingSession (Phiên gửi xe)}
+Lớp này lưu trữ thông tin chi tiết về một phiên gửi xe (từ lúc vào đến lúc ra) của khách hàng.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{sessionID}: Mã định danh duy nhất của phiên gửi xe (String).
+        \item \texttt{customerID}: Mã khách hàng liên kết với phiên gửi (String).
+        \item \texttt{vehicleID}: Mã phương tiện liên kết với phiên gửi (String).
+        \item \texttt{licensePlate}: Biển số xe dùng để đối soát (String).
+        \item \texttt{rfidCardID}: Mã thẻ từ được sử dụng (String).
+        \item \texttt{spotID}: Mã vị trí đỗ xe (String).
+        \item \texttt{checkInTime}: Thời điểm phương tiện vào bãi (DateTime).
+        \item \texttt{checkOutTime}: Thời điểm phương tiện ra khỏi bãi (DateTime).
+        \item \texttt{fee}: Tổng số tiền phí gửi xe của phiên (Double).
+        \item \texttt{isGuestSession}: Trạng thái xác định đây là phiên của khách vãng lai (Boolean).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{verifyMember(rfid, licensePlate)}: Xác thực quyền ra/vào tự động cho thẻ hoặc biển số của khách thành viên.
+        \item \texttt{processAutoCheckIn(vehicleId)}: Xử lý logic tạo phiên gửi xe tự động khi hệ thống nhận diện xe vào cổng.
+        \item \texttt{processAutoCheckOut(vehicleId)}: Xử lý logic đóng phiên gửi xe tự động khi xe ra khỏi bãi.
+        \item \textbf{calculateFee(): double (Class ParkingSession)}
+        \begin{itemize}
+            \item Mục đích: Tính toán chính xác số tiền phí mà khách hàng phải trả cho một phiên gửi xe.
+            \item Mô tả logic: Tính toán số tiền (dưới dạng số thực double) dựa trên sự chênh lệch giữa \texttt{checkInTime} và \texttt{checkOutTime}, đối chiếu với \texttt{PricingPolicy} (bảng giá).
+        \end{itemize}
+
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp thực thể: ParkingSpot (Vị trí đỗ xe)}
+Lớp đại diện cho một ô đỗ xe vật lý trong bãi.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{spotID}: Mã định danh duy nhất của ô đỗ xe (String).
+        \item \texttt{status}: Trạng thái hiện tại của ô đỗ (Enum \texttt{ParkingSpot\_Status}: Available, Occupied, Maintenance).
+        \item \texttt{lastUpdate}: Thời điểm cập nhật trạng thái gần nhất (String).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{updateStatus()}: Cập nhật trạng thái ô đỗ thành có xe hoặc trống dựa trên tín hiệu từ cảm biến.
+        \item \texttt{checkAvailability()}: Kiểm tra trạng thái hiện tại xem ô đỗ có sẵn sàng tiếp nhận xe hay không.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp thực thể: Vehicle (Phương tiện)}
+Lưu trữ thông tin về phương tiện đã được đăng ký trên hệ thống.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{vehicleID}: Mã định danh của phương tiện (String).
+        \item \texttt{customerID}: Mã khách hàng sở hữu phương tiện (String).
+        \item \texttt{licensePlate}: Biển số xe thực tế (String).
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp thực thể: RFIDCard (Thẻ từ)}
+Quản lý danh sách thẻ từ dùng để quét ra/vào cổng.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{cardID}: Mã định danh vật lý của thẻ (String).
+        \item \texttt{type}: Loại thẻ định danh (Enum \texttt{CardType}).
+        \item \texttt{isAssigned}: Trạng thái xác định thẻ đã được cấp cho ai hay chưa (Boolean).
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp điều khiển: Employee (Nhân viên vận hành)}
+Đại diện cho tác nhân nhân viên, xử lý các nghiệp vụ thủ công và quản lý phê duyệt.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{employeeID}: Mã định danh của nhân viên (String).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{issueTemporaryCard()}: Cấp thẻ tạm, tạo phiên gửi xe mới và mở barie cho khách vãng lai.
+        \item \texttt{confirmManualCheckout()}: Xác nhận thu hồi thẻ, kết thúc phiên gửi xe và mở cổng ra.
+        \item \texttt{receiveCash()}: Cập nhật trạng thái đã nhận tiền mặt từ khách hàng.
+        \item \texttt{verifyRegistration(reg)}: Phê duyệt hoặc từ chối hồ sơ đăng ký xe của khách thành viên.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp điều khiển: GuestCustomer (Khách vãng lai)}
+Đại diện cho đối tượng khách không có tài khoản trên hệ thống.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{licensePlate}: Biển số xe tạm thời của khách (String).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{requestTemporaryCard()}: Yêu cầu cấp thẻ tạm tại cổng khi vào bãi.
+        \item \texttt{returnTemporaryCard()}: Trả lại thẻ tạm tại cổng để thanh toán khi ra bãi.
+        \item \texttt{payCashToStaff()}: Thực hiện thanh toán phí gửi xe bằng tiền mặt.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp điều khiển: MemberCustomer (Khách thành viên)}
+Đại diện cho người dùng đã đăng ký tài khoản (Sinh viên, Cán bộ).
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{walletBalance}: Số dư hiện tại trong ví nội bộ (Double).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{submitRegistration()}: Gửi yêu cầu đăng ký phương tiện mới lên hệ thống, trả về đối tượng phương tiện chờ duyệt (Vehicle).
+        \item \texttt{createSubscription(month, String)}: Khởi tạo yêu cầu đăng ký hoặc gia hạn gói gửi xe theo tháng, trả về đơn hàng thanh toán (MonthlyTicket).
+        
+        \item \textbf{viewTransactionHistory(): void (Class MemberCustomer)}
+        \begin{itemize}
+            \item Mục đích: Kích hoạt luồng xem lịch sử giao dịch cá nhân của khách hàng có tài khoản. (UC 3.1)
+
+            \item Mô tả logic: Phương thức này truy xuất danh sách các đối tượng Transaction liên kết với MemberCustomer hiện tại từ cơ sở dữ liệu. Sau khi lấy được dữ liệu, nó điều khiển giao diện (View/UI) hiển thị danh sách này ra màn hình, bao gồm các thông tin theo Use-case yêu cầu (Thời gian, Số tiền, Trạng thái thanh toán) và cho phép người dùng thực hiện thao tác sắp xếp.
+        \end{itemize}
+
+        \item \textbf{payInvoice(): void (Class MemberCustomer)}
+        \begin{itemize}     
+            \item Mục đích: Xử lý thao tác thanh toán một hóa đơn điện tử thông qua cổng thanh toán. (UC 3.2)
+
+            \item Mô tả logic: Phương thức này tiếp nhận lệnh ``Chuyển đến BKPay'' từ người dùng và gọi đến API của cổng thanh toán BKPay. Nó chờ Webhook trả về và xử lý kết quả.      
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Lớp Invoice}
+Đại diện cho người dùng đã đăng ký tài khoản (Sinh viên, Cán bộ).
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item invoiceID: string: Mã định danh duy nhất của hóa đơn.
+        \item amount: double: Số tiền cước phí cần thanh toán.
+        \item dueDate: string: Ngày đến hạn thanh toán hóa đơn.
+        \item createdDate: string: Ngày giờ hệ thống khởi tạo hóa đơn.
+    \end{itemize}
+
+
+
+
+
+
+
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \textbf{generateInvoice(): void (Class Invoice)}
+        \begin{itemize}
+            \item Mục đích: Khởi tạo thông tin chi tiết cho một hóa đơn mới. (UC 3.2)
+
+            \item Mô tả logic: Dựa vào phí gửi xe đã được tính toán từ các phiên gửi xe (ParkingSession), hàm này khởi tạo đối tượng \texttt{Invoice}, gán \texttt{invoiceID}, thiết lập số tiền \texttt{amount}, ngày tạo \texttt{createdDate}, và đặc biệt là hạn thanh toán \texttt{dueDate}. Dữ liệu này là tiền đề để hiển thị danh sách hóa đơn cho \texttt{MemberCustomer} thanh toán.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+\subsubsection{Lớp Transaction}
+Đại diện cho người dùng đã đăng ký tài khoản (Sinh viên, Cán bộ).
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item transactionID: string: Mã định danh duy nhất của giao dịch.
+        \item amount: double: Số tiền thực hiện trong giao dịch.
+        \item timestamp: string: Thời gian (ngày và giờ) hệ thống ghi nhận giao dịch.
+        \item paymentStatus: Payment\_Status: Trạng thái thanh toán của giao dịch (sử dụng Enumeration \texttt{Payment\_Status} như Paid, Unpaid, Overdue).
+        \item paymentMethod: string: Phương thức thanh toán được khách hàng sử dụng (ví dụ: Tiền mặt, chuyển khoản qua BKPay).
+    \end{itemize}
+
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \textbf{getDetail(): string}
+        \begin{itemize}
+            \item Mục đích: Đóng gói và trả về chuỗi thông tin chi tiết của một giao dịch.
+            \item Mô tả logic: Phương thức này định dạng các thuộc tính của Transaction thành một chuỗi có cấu trúc dễ đọc. Chuỗi này được sử dụng để hiển thị trong danh sách lịch sử giao dịch của khách hàng.
+        \end{itemize}
+
+        \item \textbf{updateStatus(): void}
+        \begin{itemize}
+            \item Mục đích: Thay đổi trạng thái thanh toán của giao dịch.
+
+            \item Mô tả logic: Truy xuất các thuộc tính của lớp \texttt{Transaction} (như \texttt{transactionID}, \texttt{amount}, \texttt{timestamp}, \texttt{paymentStatus}, \texttt{paymentMethod}) và định dạng chúng thành một chuỗi (String) hoặc chuỗi JSON có cấu trúc.
+            \begin{itemize}
+                \item Trong U3.2: Được gọi sau khi \texttt{payInvoice()} nhận kết quả trả về từ BKPay để đổi trạng thái từ ``Unpaid'' sang ``Paid'' hoặc ''Overdue'' nếu quá hạn.
+                \item Trong U3.3: Được gọi khi Nhân viên bấm "Xác nhận đã nhận tiền" để đổi trạng thái giao dịch sang "Đã thanh toán" (Success) rồi lưu xuống cơ sở dữ liệu.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp IoTDevice}
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{sensorId: string}: Mã định danh duy nhất của thiết bị cảm biến.
+        \item \texttt{slotId: string}: Mã định danh của vị trí đỗ xe mà cảm biến này đang phụ trách giám sát.
+        \item \texttt{status: IoTDevice\_Status}: Trạng thái hoạt động và kết nối hiện tại của thiết bị.
+        \item \texttt{lastPing: string}: Mốc thời gian hệ thống nhận được tín hiệu phản hồi cuối cùng từ thiết bị.
+        \item \texttt{batteryLevel: double}: Mức dung lượng pin hiện tại của thiết bị phần cứng.
+    \end{itemize}
+    
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \textbf{\texttt{detectVehicle(): bool}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Phát hiện sự hiện diện của phương tiện tại vị trí đỗ xe theo thời gian thực.
+            \item \textit{Mô tả logic:} Thiết bị sử dụng cảm biến (siêu âm, hồng ngoại hoặc từ trường) để quét không gian tại vị trí đỗ. Nếu có vật thể che chắn hoặc thỏa mãn điều kiện về khoảng cách và thời gian duy trì, hệ thống vi điều khiển sẽ đánh giá là có xe và trả về \texttt{true}. Ngược lại, nếu không có vật cản, phương thức trả về \texttt{false}.
+        \end{itemize}
+
+        \item \textbf{\texttt{sendStatus(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Duy trì tín hiệu Heartbeat để hệ thống trung tâm có thể giám sát tình trạng sức khỏe của thiết bị.
+            \item \textit{Mô tả logic:} Theo một chu kỳ thời gian cố định, thiết bị tự động đóng gói các thông tin cơ bản bao gồm \texttt{sensorId}, \texttt{status} và \texttt{batteryLevel}. Gói tin này được gửi đến máy chủ. Nếu máy chủ không nhận được gói tin này vượt quá thời gian timeout cho phép, thiết bị sẽ bị đánh dấu là mất kết nối trên hệ thống.
+        \end{itemize}
+
+        \item \textbf{\texttt{sendData(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Truyền tải dữ liệu thay đổi trạng thái của vị trí đỗ xe (có xe/không có xe) lên hệ thống trung tâm ngay khi có sự kiện xảy ra.
+            \item \textit{Mô tả logic:} Ngay khi hàm \texttt{detectVehicle()} ghi nhận sự thay đổi trạng thái (từ trống sang có xe hoặc ngược lại), phương thức này được kích hoạt. Nó đóng gói mã \texttt{slotId} cùng trạng thái mới nhất và truyền qua mạng (MQTT/HTTP) lên máy chủ. Máy chủ sau đó sẽ tiếp nhận và tiến hành cập nhật cơ sở dữ liệu.
+        \end{itemize}
+
+        \item \textbf{\texttt{storeLocally(): bool}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Xử lý sự cố mất mạng tạm thời, đảm bảo không bị mất mát dữ liệu trạng thái của bãi xe.
+            \item \textit{Mô tả logic:} Khi \texttt{sendData()} phát hiện không thể thiết lập kết nối mạng với máy chủ, phương thức này tự động được gọi. Nó tiến hành lưu trữ gói tin dữ liệu trạng thái kèm theo mốc thời gian (timestamp) vào bộ nhớ cục bộ (như thẻ nhớ SD hoặc EEPROM) trên thiết bị. Trả về \texttt{true} nếu lưu thành công.
+        \end{itemize}
+
+        \item \textbf{\texttt{syncToServer(): bool}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Đồng bộ hóa dữ liệu bị dồn đọng khi thiết bị có kết nối mạng trở lại.
+            \item \textit{Mô tả logic:} Khi thiết bị phát hiện kết nối mạng đã được khôi phục (ping thành công tới máy chủ), phương thức này tiến hành quét bộ nhớ cục bộ. Nó trích xuất các gói tin đã được lưu bởi \texttt{storeLocally()} và đẩy tuần tự lên hệ thống trung tâm. Sau khi máy chủ gửi tín hiệu xác nhận (ACK) đã nhận đủ, phương thức này sẽ xóa dữ liệu cục bộ để giải phóng bộ nhớ và trả về \texttt{true}.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp ParkingSpot (Vị trí đỗ xe)}
+Lớp thực thể đại diện cho một ô đỗ xe vật lý trong bãi đỗ, nơi được liên kết trực tiếp với dữ liệu giám sát từ \texttt{IoTDevice}.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{slotId: string}: Mã định danh duy nhất của ô đỗ xe.
+        \item \texttt{status: ParkingSpot\_Status}: Trạng thái hiện tại của ô đỗ.
+        \item \texttt{lastUpdated: string}: Mốc thời gian cập nhật trạng thái vị trí đỗ gần nhất.
+    \end{itemize}
+    
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \textbf{\texttt{updateState(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Cập nhật thông tin mới nhất về tình trạng chiếm dụng của vị trí đỗ xe trên cơ sở dữ liệu trung tâm.
+            \item \textit{Mô tả logic:} Phương thức này (nằm ở phía Server/Hệ thống) được kích hoạt khi nhận được gói tin dữ liệu hợp lệ từ thiết bị IoT gửi thông qua hàm \texttt{sendData()}. Hệ thống tiến hành giải mã, truy vấn vị trí đỗ có \texttt{slotId} tương ứng và ghi đè trạng thái mới (Available hoặc Occupied) cùng với thời gian \texttt{lastUpdated} vào cơ sở dữ liệu. Giao diện app/web sẽ lấy dữ liệu mới này để render lại sơ đồ bãi xe.
+        \end{itemize}
+
+        \item \textbf{\texttt{addManualNote(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Cho phép quản trị viên hoặc nhân viên bãi xe can thiệp và ghi chú thủ công về tình trạng bất thường của vị trí đỗ.
+            \item \textit{Mô tả logic:} Khi có sự cố ngoại lệ (ví dụ: cảm biến hỏng, vị trí cần dọn dẹp vệ sinh, hoặc được khách VIP đặt trước), nhân viên thao tác trên giao diện phần mềm quản lý để gọi phương thức này. Hệ thống sẽ thay đổi \texttt{status} của vị trí đỗ sang "Maintenance" hoặc trạng thái tương ứng, đồng thời lưu trữ nội dung ghi chú. Lúc này, người dùng thông thường sẽ không thể đặt hoặc xem vị trí này là chỗ trống trên ứng dụng.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}

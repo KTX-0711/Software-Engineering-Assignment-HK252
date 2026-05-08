@@ -8,6 +8,24 @@
         \item Mô tả logic: Khi có phương tiện tiến vào hoặc rời khỏi ô đỗ, cảm biến được lắp tại vị trí đó sẽ phát hiện sự thay đổi. Phương thức này gửi tín hiệu về hệ thống trung tâm để thông báo ô đỗ đang có hoặc không có xe.
     \end{itemize}
 
+    \item \textbf{verifyMemberVehicle(rfid: string, licensePlate: string): bool (Class ParkingSession)}
+    \begin{itemize}
+        \item Mục đích: Xác thực phương tiện có quyền ra/vào tự động hay không (UC 2.x).
+        \item Mô tả logic: Hệ thống đối chiếu \texttt{rfid} hoặc \texttt{licensePlate} với danh sách \texttt{Vehicle} của \texttt{MemberCustomer} trong cơ sở dữ liệu. Đồng thời kiểm tra \texttt{MonthlyTicket} tương ứng có còn hiệu lực (\texttt{isValid}) hay không. Trả về \texttt{true} nếu hợp lệ.
+    \end{itemize}
+
+    \item \textbf{processAutoCheckIn(vehicleId: string): void (Class ParkingSession)}
+    \begin{itemize}
+        \item Mục đích: Tự động tạo phiên gửi xe lúc khách vào bãi (UC 2.x).
+        \item Mô tả logic: Nếu \texttt{verifyMemberVehicle()} trả về \texttt{true}, hệ thống tự động khởi tạo đối tượng \texttt{ParkingSession} mới. Gán \texttt{checkInTime} là thời gian hiện tại, \texttt{isGuestSession = false}, và tự động gọi lệnh mở barie.
+    \end{itemize}
+
+    \item \textbf{processAutoCheckOut(vehicleId: string): void (Class ParkingSession)}
+    \begin{itemize}
+        \item Mục đích: Tự động kết thúc phiên gửi xe lúc khách ra bãi (UC 2.x).
+        \item Mô tả logic: Nhận diện xe tại cổng ra, tìm \texttt{ParkingSession} đang mở tương ứng với \texttt{vehicleId}. Ghi nhận \texttt{checkOutTime}, tính toán phụ phí (nếu có thông qua \texttt{calculateFee()}), đóng phiên gửi xe và tự động gọi lệnh mở barie.
+    \end{itemize}
+
     \item \textbf{updateStatus(): void (Class ParkingSlot)}
     \begin{itemize}
         \item Mục đích: Cập nhật trạng thái ô đỗ trên hệ thống (UC 2.1).
@@ -56,10 +74,20 @@
         \item Mô tả logic: Khách hàng nhập biển số xe và tải lên giấy tờ cần thiết thông qua giao diện web. Hệ thống tạo mới đối tượng \texttt{Vehicle} với trạng thái \texttt{PENDING} và chuyển yêu cầu đến nhân viên để xét duyệt.
     \end{itemize}
 
-    \item \textbf{verifyRegistration(reg: Registration\_Status): void (Class Employee)}
+    \item \textbf{verifyRegistration(regID: string, status: Registration\_Status): void (Class Employee)}
     \begin{itemize}
-        \item Mục đích: Kiểm tra và phê duyệt hồ sơ đăng ký xe (UC 2.3).
-        \item Mô tả logic: Nhân viên xem xét thông tin đăng ký và cập nhật trạng thái hồ sơ thành \texttt{APPROVED} hoặc \texttt{REJECTED}. Nếu được chấp nhận, biển số xe sẽ được thêm vào hệ thống nhận diện tự động.
+        \item Mục đích: Kiểm tra, đối soát và đưa ra quyết định phê duyệt hồ sơ đăng ký phương tiện của khách hàng (UC 2.3).
+
+        \item Mô tả logic:
+        \begin{enumerate}
+            \item Nhân viên truy xuất hồ sơ đăng ký từ danh sách chờ (\texttt{PENDING}) dựa trên \texttt{regID}.
+
+            \item Tiến hành đối chiếu hình ảnh giấy tờ xe (cà vẹt, bảo hiểm) mà khách hàng đã tải lên với biển số xe (\texttt{licensePlate}) đã nhập.
+
+            \item Nếu thông tin hợp lệ, nhân viên cập nhật trạng thái hồ sơ thành \texttt{APPROVED}. Lúc này, hệ thống sẽ tự động chuyển trạng thái của đối tượng \texttt{Vehicle} tương ứng từ \texttt{PENDING} sang \texttt{ACTIVE}, cho phép xe bắt đầu sử dụng luồng ra/vào tự động.
+
+            \item Nếu thông tin sai lệch hoặc không rõ ràng, nhân viên cập nhật trạng thái hồ sơ thành \texttt{REJECTED} và nhập lý do từ chối để hệ thống gửi thông báo phản hồi cho khách hàng.
+        \end{enumerate}
     \end{itemize}
 
     \item \textbf{createSubscription(): void (Class MemberCustomer)}
@@ -67,4 +95,5 @@
         \item Mục đích: Đăng ký hoặc gia hạn gói gửi xe tháng (UC 2.4).
         \item Mô tả logic: Khi khách hàng chọn gói gửi xe tháng trên giao diện web, hệ thống sẽ tạo \texttt{MonthlyTicket} và \texttt{Invoice} tương ứng trước khi chuyển sang bước thanh toán.
     \end{itemize}
+
 \end{itemize}

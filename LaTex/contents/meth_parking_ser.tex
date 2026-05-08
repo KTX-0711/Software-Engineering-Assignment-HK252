@@ -1,0 +1,70 @@
+\subsection{Usecase: Parking Service}
+
+\begin{itemize}
+
+    \item \textbf{updateVehicle(): bool (Class IoTDevice)}
+    \begin{itemize}
+        \item Mục đích: Phát hiện sự thay đổi trạng thái tại vị trí đỗ xe (UC 2.1).
+        \item Mô tả logic: Khi có phương tiện tiến vào hoặc rời khỏi ô đỗ, cảm biến được lắp tại vị trí đó sẽ phát hiện sự thay đổi. Phương thức này gửi tín hiệu về hệ thống trung tâm để thông báo ô đỗ đang có hoặc không có xe.
+    \end{itemize}
+
+    \item \textbf{updateStatus(): void (Class ParkingSlot)}
+    \begin{itemize}
+        \item Mục đích: Cập nhật trạng thái ô đỗ trên hệ thống (UC 2.1).
+        \item Mô tả logic: Sau khi nhận dữ liệu từ cảm biến thông qua \texttt{updateVehicle()}, hệ thống sẽ thay đổi trạng thái của \texttt{ParkingSlot} từ \texttt{Available} sang \texttt{Occupied} hoặc ngược lại. Thông tin này được hiển thị ngay trên giao diện quản lý và bản đồ bãi xe theo thời gian thực.
+    \end{itemize}
+
+    \item \textbf{requestTemporaryCard(): bool (Class GuestCustomer)}
+    \begin{itemize}
+        \item Mục đích: Khách vãng lai yêu cầu cấp thẻ tạm khi vào bãi (UC 2.2).
+        \item Mô tả logic: Khi xe dừng tại cổng mà hệ thống không tìm thấy thông tin tài khoản phù hợp, khách hàng có thể nhấn nút yêu cầu cấp thẻ tại kiosk. Yêu cầu này sẽ được gửi đến giao diện làm việc của nhân viên trực.
+    \end{itemize}
+
+    \item \textbf{issueTemporaryCard(): void (Class Employee)}
+    \begin{itemize}
+        \item Mục đích: Cấp thẻ tạm và cho phép khách vào bãi (UC 2.2).
+        \item Mô tả logic: Nhân viên sử dụng một thẻ RFID chưa được kích hoạt để tạo phiên gửi xe mới cho khách. Hệ thống lưu lại mã thẻ, thời gian vào và hình ảnh biển số xe, sau đó gửi tín hiệu mở barie.
+    \end{itemize}
+
+    \item \textbf{returnTemporaryCard(): void (Class GuestCustomer)}
+    \begin{itemize}
+        \item Mục đích: Khách trả lại thẻ tạm khi ra khỏi bãi (UC 2.2).
+        \item Mô tả logic: Tại cổng ra, khách hàng đưa lại thẻ cho nhân viên. Hệ thống sử dụng mã thẻ để truy xuất phiên gửi xe tương ứng và tính phí đỗ xe.
+    \end{itemize}
+
+    \item \textbf{payCashToStaff(): void (Class GuestCustomer)}
+    \begin{itemize}
+        \item Mục đích: Thanh toán phí gửi xe bằng tiền mặt (UC 2.2).
+        \item Mô tả logic: Sau khi hệ thống hiển thị số tiền cần thanh toán, khách hàng thực hiện thanh toán trực tiếp cho nhân viên tại quầy kiểm soát.
+    \end{itemize}
+
+    \item \textbf{receiveCash(): void (Class Employee)}
+    \begin{itemize}
+        \item Mục đích: Xác nhận đã nhận đủ tiền từ khách hàng (UC 2.2).
+        \item Mô tả logic: Sau khi nhận tiền mặt, nhân viên thao tác xác nhận trên giao diện quản lý. Hệ thống cập nhật trạng thái thanh toán của phiên gửi xe thành công.
+    \end{itemize}
+
+    \item \textbf{confirmManualCheckout(): void (Class Employee)}
+    \begin{itemize}
+        \item Mục đích: Hoàn tất quy trình ra bãi thủ công (UC 2.2).
+        \item Mô tả logic: Hệ thống ghi nhận thời gian ra, kết thúc phiên gửi xe và hủy liên kết với thẻ tạm để thẻ có thể được sử dụng lại cho khách khác. Sau đó barie được mở để xe rời bãi.
+    \end{itemize}
+
+    \item \textbf{submitRegistrationVehicle(): void (Class MemberCustomer)}
+    \begin{itemize}
+        \item Mục đích: Gửi yêu cầu đăng ký phương tiện (UC 2.3).
+        \item Mô tả logic: Khách hàng nhập biển số xe và tải lên giấy tờ cần thiết thông qua giao diện web. Hệ thống tạo mới đối tượng \texttt{Vehicle} với trạng thái \texttt{PENDING} và chuyển yêu cầu đến nhân viên để xét duyệt.
+    \end{itemize}
+
+    \item \textbf{verifyRegistration(reg: Registration\_Status): void (Class Employee)}
+    \begin{itemize}
+        \item Mục đích: Kiểm tra và phê duyệt hồ sơ đăng ký xe (UC 2.3).
+        \item Mô tả logic: Nhân viên xem xét thông tin đăng ký và cập nhật trạng thái hồ sơ thành \texttt{APPROVED} hoặc \texttt{REJECTED}. Nếu được chấp nhận, biển số xe sẽ được thêm vào hệ thống nhận diện tự động.
+    \end{itemize}
+
+    \item \textbf{createSubscription(): void (Class MemberCustomer)}
+    \begin{itemize}
+        \item Mục đích: Đăng ký hoặc gia hạn gói gửi xe tháng (UC 2.4).
+        \item Mô tả logic: Khi khách hàng chọn gói gửi xe tháng trên giao diện web, hệ thống sẽ tạo \texttt{MonthlyTicket} và \texttt{Invoice} tương ứng trước khi chuyển sang bước thanh toán.
+    \end{itemize}
+\end{itemize}

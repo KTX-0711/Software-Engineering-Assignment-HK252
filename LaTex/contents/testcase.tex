@@ -1,0 +1,240 @@
+\section{Testcase}
+\subsection{U3.1 -- Xem lịch sử giao dịch cá nhân}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% U3.1 — Xem lịch sử giao dịch cá nhân
+\textbf{Class: MemberCustomer, Transaction}
+
+\textbf{Method: viewTransactionHistory(), getDetail()}
+\begin{longtable}{C{1.3cm} L{3cm} L{4.5cm} L{5cm} C{2.0cm}}
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+ 
+T1 &
+Xem lịch sử khi có giao dịch &
+MemberCustomer đã đăng nhập; DB có 3 Transaction liên kết &
+Hiển thị danh sách 3 giao dịch gồm: timestamp, amount, paymentStatus &
+Black-box \\
+\midrule
+ 
+T2 &
+Xem lịch sử khi chưa có giao dịch (E1) &
+MemberCustomer hợp lệ; DB không có Transaction nào &
+Hệ thống hiển thị danh sách trống, thông báo ``Không có giao dịch nào'' &
+Black-box \\
+\midrule
+ 
+T3 &
+Sắp xếp danh sách theo Số tiền &
+Danh sách đang hiển thị; người dùng chọn sắp xếp theo ``Số tiền'' &
+Danh sách sắp xếp theo amount giảm dần &
+Black-box \\
+\midrule
+ 
+T4 &
+getDetail() trả về chuỗi đầy đủ &
+Transaction hợp lệ: transactionID=``TX001'', amount=50000, timestamp=``2024-05-01 08:00'', paymentStatus=Paid, paymentMethod=``BKPay'' &
+Trả về chuỗi: ``TX001 | 50,000 VND | 2024-05-01 08:00 | Paid | BKPay'' &
+Unit \\
+\midrule
+ 
+T5 &
+getDetail() khi có thuộc tính null &
+Transaction có paymentMethod=null &
+Trả về chuỗi với trường paymentMethod hiển thị ``N/A'', không ném exception &
+Unit \\
+ 
+\end{longtable}
+ 
+\subsection{U3.2 -- Thanh toán hóa đơn}
+\textbf{Class: MemberCustomer, Invoice, Transaction}
+
+\textbf{Method: payInvoice(), generateInvoice(), updateStatus()}
+\begin{longtable}{C{1.3cm} L{3cm} L{4.5cm} L{5cm} C{2.0cm}}
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+ 
+T6 &
+Thanh toán thành công qua BKPay &
+MemberCustomer chọn Invoice hợp lệ; BKPay phản hồi SUCCESS &
+updateStatus() cập nhật paymentStatus=Paid; hiển thị ``Giao dịch thành công'' &
+Black-box \\
+\midrule
+ 
+T7 &
+BKPay phản hồi thất bại &
+MemberCustomer chọn Invoice hợp lệ; BKPay phản hồi FAILED &
+updateStatus() cập nhật paymentStatus=Unpaid; hiển thị thông báo ``Thanh toán thất bại'' &
+Black-box \\
+\midrule
+ 
+T8 &
+generateInvoice() tạo hóa đơn đúng &
+ParkingSession: checkInTime=``08:00'', checkOutTime=``10:30''; pricePerHour=10,000 VND &
+Invoice tạo với amount=25,000 VND; dueDate=createdDate+24h &
+Unit \\
+\midrule
+ 
+T9 &
+updateStatus() đổi paymentStatus thành Paid &
+paymentStatus=Unpaid; BKPay trả SUCCESS; gọi updateStatus() &
+paymentStatus chuyển thành Paid; lưu vào DB &
+Unit \\
+\midrule
+ 
+T10 &
+Tài khoản bị khóa vẫn được thanh toán (E1) &
+walletBalance đủ; tài khoản bị khóa do quá hạn &
+Hệ thống cho phép thanh toán qua BKPay; sau khi thành công, tài khoản được mở khóa &
+Black-box \\
+ 
+\end{longtable}
+ 
+ 
+\subsection{U3.3 -- Thanh toán thủ công}
+\textbf{Class: Employee, Invoice, Transaction}
+
+\textbf{Method: generateInvoice(), updateStatus()}
+
+\begin{longtable}{C{1.3cm} L{3cm} L{4.5cm} L{5cm} C{2.0cm}}
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+ 
+T11 &
+Quét thẻ tạm hợp lệ tại cổng ra &
+Khách dùng thẻ tạm hợp lệ; Invoice tương ứng tồn tại trong DB &
+Hệ thống hiển thị amount cho cả khách và nhân viên &
+Black-box \\
+\midrule
+ 
+T12 &
+Không tìm thấy giao dịch gửi xe (E1) &
+Thẻ tạm quét vào nhưng DB không tìm thấy Invoice tương ứng &
+Hệ thống báo lỗi; nhân viên xác minh bằng biển số, tạo Invoice thủ công qua generateInvoice() &
+Black-box \\
+\midrule
+ 
+T13 &
+Khách mất thẻ (E1 -- mất thẻ) &
+Khách không có thẻ; nhân viên nhập biển số xe thủ công &
+generateInvoice() tạo Invoice với amount cộng thêm phí phạt mất thẻ &
+Black-box \\
+\midrule
+ 
+T14 &
+Nhân viên xác nhận đã nhận tiền &
+Khách đã trả tiền mặt; nhân viên bấm ``Xác nhận đã nhận tiền'' &
+Transaction.updateStatus() đổi paymentStatus thành Paid; lưu DB; barie mở &
+Black-box \\
+\end{longtable}
+
+
+
+\subsection{U2.1 — Xác nhận và ghi nhận ra vào tự động}
+\textbf{Class: ParkingSession, RFIDCard, Vehicle, ParkingSpot, IoTDevice}
+\textbf{Method: processAutoCheckIn(), processAutoCheckOut()},
+%         verifyMember(), calculateFee(), updateState()
+\begin{longtable}{C{1.3cm} L{3cm} L{4.5cm} L{5cm} C{2.0cm}}
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Test ID} & \textbf{Description} & \textbf{Input} & \textbf{Expected Output} & \textbf{Test Type} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+
+T1 &
+Check-in tự động thành công &
+RFIDCard hợp lệ, isAssigned=true; licensePlate khớp với Vehicle đã đăng ký; biển số xác nhận qua camera &
+verifyMember() trả về true; ParkingSession tạo với checkInTime=now, isGuestSession=false; barie mở &
+Black-box \\
+\midrule
+
+T2 &
+Thẻ RFID hết hạn hoặc bị khóa (E1) &
+RFIDCard quét tại cổng nhưng isAssigned=false hoặc thẻ không hợp lệ &
+verifyMember() trả về false; hệ thống hiển thị lỗi ``Thẻ không hợp lệ''; barie không mở &
+Black-box \\
+\midrule
+
+T3 &
+Biển số không khớp với đăng ký (E2) &
+RFIDCard hợp lệ nhưng licensePlate camera đọc được không khớp với Vehicle trong DB &
+verifyMember() trả về false; hệ thống hiển thị lỗi ``Biển số không khớp''; barie không mở &
+Black-box \\
+\midrule
+
+T4 &
+Check-out tự động thành công &
+ParkingSession đang mở với vehicleId hợp lệ; xe quét thẻ tại cổng ra &
+processAutoCheckOut() ghi checkOutTime=now; calculateFee() tính phí; phiên đóng; barie mở &
+Black-box \\
+\midrule
+
+T5 &
+Khách có gói tháng còn hiệu lực (A2) &
+MemberCustomer có MonthlyTicket còn hiệu lực; xe vào bãi &
+processAutoCheckIn() tạo ParkingSession; hệ thống bỏ qua bước tính phí; barie mở &
+Black-box \\
+\midrule
+
+T6 &
+Khách không có gói tháng, cộng dồn phí (A1) &
+MemberCustomer không có MonthlyTicket; xe vào bãi &
+processAutoCheckIn() tạo ParkingSession; hệ thống ghi nhận để tính phí khi ra &
+Black-box \\
+\midrule
+
+T7 &
+verifyMember() xác thực đúng &
+rfid=``CARD001'', licensePlate=``51A-123.45''; cả hai khớp với Vehicle trong DB &
+verifyMember() trả về true &
+Unit \\
+\midrule
+
+
+T8 &
+ParkingSpot cập nhật trạng thái sau check-in &
+IoTDevice phát hiện xe vào ô đỗ slotId=``A01''; gọi updateState() &
+ParkingSpot.status chuyển từ Available sang Occupied; cập nhật lastUpdated=now &
+Unit \\
+\midrule
+
+T9 &
+ParkingSpot cập nhật trạng thái sau check-out &
+IoTDevice phát hiện xe rời ô đỗ slotId=``A01''; gọi updateState() &
+ParkingSpot.status chuyển từ Occupied sang Available; cập nhật lastUpdated=now &
+Unit \\
+
+\end{longtable}
+ 
+ 

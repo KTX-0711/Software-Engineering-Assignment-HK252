@@ -1,0 +1,96 @@
+\subsection{Các lớp cho tính năng Quản lý và Giám sát IoT}
+
+Dựa trên sơ đồ lớp (Class Diagram) của hệ thống, nhóm tính năng giám sát thiết bị IoT và quản lý vị trí đỗ xe bao gồm các lớp và kiểu liệt kê (enumeration) sau:
+
+\subsubsection{Lớp IoTDevice (Thiết bị IoT)}
+Lớp đại diện cho thiết bị cảm biến phần cứng được lắp đặt tại bãi xe, có nhiệm vụ thu thập trạng thái và giao tiếp trực tiếp với hệ thống máy chủ.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{sensorId: string}: Mã định danh duy nhất của thiết bị cảm biến.
+        \item \texttt{slotId: string}: Mã định danh của vị trí đỗ xe mà cảm biến này đang phụ trách giám sát.
+        \item \texttt{status: IoTDevice\_Status}: Trạng thái hoạt động và kết nối hiện tại của thiết bị.
+        \item \texttt{lastPing: string}: Mốc thời gian hệ thống nhận được tín hiệu phản hồi cuối cùng từ thiết bị.
+        \item \texttt{batteryLevel: double}: Mức dung lượng pin hiện tại của thiết bị phần cứng.
+    \end{itemize}
+    
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \textbf{\texttt{detectVehicle(): bool}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Phát hiện sự hiện diện của phương tiện tại vị trí đỗ xe theo thời gian thực.
+            \item \textit{Mô tả logic:} Thiết bị sử dụng cảm biến (siêu âm, hồng ngoại hoặc từ trường) để quét không gian tại vị trí đỗ. Nếu có vật thể che chắn hoặc thỏa mãn điều kiện về khoảng cách và thời gian duy trì, hệ thống vi điều khiển sẽ đánh giá là có xe và trả về \texttt{true}. Ngược lại, nếu không có vật cản, phương thức trả về \texttt{false}.
+        \end{itemize}
+
+        \item \textbf{\texttt{sendStatus(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Duy trì tín hiệu "sống" (Heartbeat/Ping) để hệ thống trung tâm có thể giám sát tình trạng sức khỏe của thiết bị.
+            \item \textit{Mô tả logic:} Theo một chu kỳ thời gian cố định (ví dụ: mỗi 60 giây), thiết bị tự động đóng gói các thông tin cơ bản bao gồm \texttt{sensorId}, \texttt{status} và \texttt{batteryLevel}. Gói tin này được gửi đến máy chủ. Nếu máy chủ không nhận được gói tin này vượt quá thời gian timeout cho phép, thiết bị sẽ bị đánh dấu là mất kết nối trên hệ thống.
+        \end{itemize}
+
+        \item \textbf{\texttt{sendData(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Truyền tải dữ liệu thay đổi trạng thái của vị trí đỗ xe (có xe/không có xe) lên hệ thống trung tâm ngay khi có sự kiện xảy ra.
+            \item \textit{Mô tả logic:} Ngay khi hàm \texttt{detectVehicle()} ghi nhận sự thay đổi trạng thái (từ trống sang có xe hoặc ngược lại), phương thức này được kích hoạt. Nó đóng gói mã \texttt{slotId} cùng trạng thái mới nhất và truyền qua mạng (MQTT/HTTP) lên máy chủ. Máy chủ sau đó sẽ tiếp nhận và tiến hành cập nhật cơ sở dữ liệu.
+        \end{itemize}
+
+        \item \textbf{\texttt{storeLocally(): bool}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Xử lý sự cố mất mạng tạm thời, đảm bảo không bị mất mát dữ liệu trạng thái của bãi xe.
+            \item \textit{Mô tả logic:} Khi \texttt{sendData()} phát hiện không thể thiết lập kết nối mạng với máy chủ, phương thức này tự động được gọi. Nó tiến hành lưu trữ gói tin dữ liệu trạng thái kèm theo mốc thời gian (timestamp) vào bộ nhớ cục bộ (như thẻ nhớ SD hoặc EEPROM) trên thiết bị. Trả về \texttt{true} nếu lưu thành công.
+        \end{itemize}
+
+        \item \textbf{\texttt{syncToServer(): bool}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Đồng bộ hóa dữ liệu bị dồn đọng khi thiết bị có kết nối mạng trở lại.
+            \item \textit{Mô tả logic:} Khi thiết bị phát hiện kết nối mạng đã được khôi phục (ping thành công tới máy chủ), phương thức này tiến hành quét bộ nhớ cục bộ. Nó trích xuất các gói tin đã được lưu bởi \texttt{storeLocally()} và đẩy tuần tự lên hệ thống trung tâm. Sau khi máy chủ gửi tín hiệu xác nhận (ACK) đã nhận đủ, phương thức này sẽ xóa dữ liệu cục bộ để giải phóng bộ nhớ và trả về \texttt{true}.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp ParkingSpot (Vị trí đỗ xe)}
+Lớp thực thể đại diện cho một ô đỗ xe vật lý trong bãi đỗ, nơi được liên kết trực tiếp với dữ liệu giám sát từ \texttt{IoTDevice}.
+
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{slotId: string}: Mã định danh duy nhất của ô đỗ xe.
+        \item \texttt{status: ParkingSpot\_Status}: Trạng thái hiện tại của ô đỗ.
+        \item \texttt{lastUpdated: string}: Mốc thời gian cập nhật trạng thái vị trí đỗ gần nhất.
+    \end{itemize}
+    
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \textbf{\texttt{updateState(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Cập nhật thông tin mới nhất về tình trạng chiếm dụng của vị trí đỗ xe trên cơ sở dữ liệu trung tâm.
+            \item \textit{Mô tả logic:} Phương thức này (nằm ở phía Server/Hệ thống) được kích hoạt khi nhận được gói tin dữ liệu hợp lệ từ thiết bị IoT gửi thông qua hàm \texttt{sendData()}. Hệ thống tiến hành giải mã, truy vấn vị trí đỗ có \texttt{slotId} tương ứng và ghi đè trạng thái mới (Available hoặc Occupied) cùng với thời gian \texttt{lastUpdated} vào cơ sở dữ liệu. Giao diện app/web sẽ lấy dữ liệu mới này để render lại sơ đồ bãi xe.
+        \end{itemize}
+
+        \item \textbf{\texttt{addManualNote(): void}}
+        \begin{itemize}
+            \item \textit{Mục đích:} Cho phép quản trị viên hoặc nhân viên bãi xe can thiệp và ghi chú thủ công về tình trạng bất thường của vị trí đỗ.
+            \item \textit{Mô tả logic:} Khi có sự cố ngoại lệ (ví dụ: cảm biến hỏng, vị trí cần dọn dẹp vệ sinh, hoặc được khách VIP đặt trước), nhân viên thao tác trên giao diện phần mềm quản lý để gọi phương thức này. Hệ thống sẽ thay đổi \texttt{status} của vị trí đỗ sang "Maintenance" hoặc trạng thái tương ứng, đồng thời lưu trữ nội dung ghi chú. Lúc này, người dùng thông thường sẽ không thể đặt hoặc xem vị trí này là chỗ trống trên ứng dụng.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Enumeration (Các kiểu liệt kê trạng thái)}
+Để đảm bảo tính nhất quán của dữ liệu lưu trữ và giao tiếp, hệ thống định nghĩa các tập hợp trạng thái (Enum) sau:
+
+\begin{itemize}
+    \item \textbf{Kiểu IoTDevice\_Status:} Định nghĩa trạng thái "sức khỏe" và mạng của thiết bị IoT.
+    \begin{itemize}
+        \item \texttt{ACTIVE}: Thiết bị đang hoạt động bình thường, cảm biến tốt và kết nối mạng ổn định.
+        \item \texttt{DATAERROR}: Thiết bị đang gặp sự cố về đọc dữ liệu (ví dụ: cảm biến hỏng, nhiễu tín hiệu).
+        \item \texttt{DATADELAY}: Thiết bị có độ trễ bất thường trong quá trình truyền tải dữ liệu do mạng chập chờn hoặc tín hiệu yếu.
+    \end{itemize}
+    
+    \item \textbf{Kiểu ParkingSpot\_Status:} Định nghĩa trạng thái sử dụng hiện tại của vị trí đỗ xe.
+    \begin{itemize}
+        \item \texttt{Available}: Vị trí đỗ xe đang trống, hệ thống sẵn sàng cho phép xe khác vào đỗ.
+        \item \texttt{Occupied}: Vị trí đỗ xe hiện đang có phương tiện chiếm dụng.
+        \item \texttt{Maintenance}: Vị trí đỗ xe đang trong quá trình bảo trì, sửa chữa phần cứng hoặc dọn dẹp, tạm thời đóng không phục vụ.
+    \end{itemize}
+\end{itemize}

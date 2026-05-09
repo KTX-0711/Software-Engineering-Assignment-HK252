@@ -343,3 +343,56 @@ Lớp thực thể đại diện cho một ô đỗ xe vật lý trong bãi đ�
         \end{itemize}
     \end{itemize}
 \end{itemize}
+
+\subsubsection{Lớp: Admin}
+\textbf{Chức năng và ý nghĩa:} Lớp đại diện cho Quản trị viên của hệ thống bãi đỗ xe. Lớp này có quyền hạn cao nhất, chịu trách nhiệm quản lý nhân sự (nhân viên vận hành), thiết lập cấu hình hệ thống, điều chỉnh chính sách giá cả và theo dõi giám sát các hoạt động chung.
+\begin{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{createStaffAccount(): bool}: Khởi tạo tài khoản đăng nhập mới cấp cho nhân viên vận hành bãi xe.
+        \item \texttt{disableStaffAccount(): bool}: Vô hiệu hóa tài khoản của nhân viên khi cần thiết (ví dụ: khi nhân viên nghỉ việc hoặc vi phạm).
+        \item \texttt{resetStaffPassword(): bool}: Cấp lại mật khẩu mới cho tài khoản của nhân viên.
+        \item \texttt{exportReport(): void}: Xuất các báo cáo thống kê liên quan đến doanh thu, lưu lượng xe, và hoạt động của bãi đỗ.
+        \item \texttt{updatePricingPolicy(): bool}: Thực hiện thao tác cập nhật hoặc thay đổi các chính sách tính phí gửi xe.
+        \item \texttt{viewSystemLogs(): string}: Xem lại nhật ký hoạt động (audit logs) của toàn hệ thống nhằm mục đích truy vết và kiểm tra.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp: PricingService}
+\textbf{Chức năng và ý nghĩa:} Đây là một Service class (lớp dịch vụ) chịu trách nhiệm cung cấp và xử lý các logic nghiệp vụ liên quan đến giá cả và chi phí gửi xe. Lớp này đóng vai trò trung gian để lấy dữ liệu chính sách và tính toán mức phí cụ thể cho từng lượt xe.
+\begin{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{getCurrentPolicies(): List<PricingPolicy>}: Lấy danh sách toàn bộ các chính sách giá (PricingPolicy) đang có hiệu lực trong hệ thống.
+        \item \texttt{updatePolicy(): bool}: Xử lý logic lưu trữ và áp dụng khi Quản trị viên yêu cầu cập nhật một chính sách giá mới.
+        \item \texttt{calculateFee(): double}: Thực hiện tính toán chi phí gửi xe thực tế cho một lượt đỗ dựa trên thời gian gửi, loại phương tiện và chính sách đang áp dụng.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp: PricingPolicy}
+\textbf{Chức năng và ý nghĩa:} Lớp thực thể (Entity class) đại diện cho một cấu hình chính sách giá cụ thể. Lớp này lưu trữ các mốc giá được áp dụng cho từng khung thời gian cụ thể theo quy định của bãi đỗ xe.
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{policyId (string)}: Mã định danh duy nhất của chính sách giá.
+        \item \texttt{timeFrame (string)}: Khung thời gian áp dụng mức giá này (ví dụ: giờ hành chính, gửi qua đêm).
+        \item \texttt{unitPrice (double)}: Đơn giá áp dụng cho khung thời gian đã quy định.
+        \item \texttt{effectiveDate (string)}: Thời điểm (ngày/giờ) mà chính sách giá này chính thức bắt đầu có hiệu lực.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Lớp: MonthlyTicket}
+\textbf{Chức năng và ý nghĩa:} Lớp đại diện cho vé tháng (gói gửi xe theo tháng) mà người dùng nội bộ đã đăng ký. Việc quản lý lớp này giúp hệ thống xác định nhanh quyền lợi vào ra bãi xe tự động của khách hàng mà không cần tính phí theo từng lượt.
+\begin{itemize}
+    \item \textbf{Thuộc tính:}
+    \begin{itemize}
+        \item \texttt{slotId (string)}: Mã định danh vị trí đỗ xe cố định (nếu vé tháng của khách hàng có đi kèm vị trí được chỉ định riêng).
+        \item \texttt{startDate (string)}: Ngày bắt đầu có hiệu lực của vé tháng.
+        \item \texttt{expiryDate (string)}: Ngày hết hạn của vé tháng (Lưu ý: trong biểu đồ của bạn thuộc tính này đang bị lặp lại 2 lần, bạn nên xóa bớt 1 dòng cho chuẩn xác).
+        \item \texttt{ticketStatus (Ticket\_Status)}: Trạng thái hiện tại của vé tháng (ví dụ: đang kích hoạt, đã hết hạn, bị tạm khóa).
+    \end{itemize}
+    \item \textbf{Phương thức:}
+    \begin{itemize}
+        \item \texttt{isValid(): bool}: Hàm kiểm tra xem vé tháng hiện tại có còn hiệu lực để sử dụng qua trạm kiểm soát hay không (thường dựa trên việc so sánh ngày hiện tại với \texttt{expiryDate} và kiểm tra \texttt{ticketStatus}).
+    \end{itemize}
+\end{itemize}

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "inv_month_1778428413358_ubhpw",
+    "customerId": "acc_004",
+    "sessionIds": [],
+    "invoiceType": "MONTHLY_PLAN",
+    "totalAmount": 72000,
+    "status": "Paid",
+    "dueDate": "2026-05-15T15:53:33.357Z",
+    "createdAt": "2026-05-10T15:53:33.357Z"
+  }
+]

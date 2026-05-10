@@ -1,0 +1,62 @@
+[
+  {
+    "id": "SENS_A01",
+    "spotId": "A01",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A02",
+    "spotId": "A02",
+    "status": "DATAERROR",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A03",
+    "spotId": "A03",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A04",
+    "spotId": "A04",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A05",
+    "spotId": "A05",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A06",
+    "spotId": "A06",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A07",
+    "spotId": "A07",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A08",
+    "spotId": "A08",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A09",
+    "spotId": "A09",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  },
+  {
+    "id": "SENS_A10",
+    "spotId": "A10",
+    "status": "ACTIVE",
+    "batteryLevel": 85
+  }
+]

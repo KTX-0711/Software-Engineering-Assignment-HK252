@@ -1,0 +1,402 @@
+[
+  {
+    "id": "A01",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A02",
+    "status": "Maintenance",
+    "floor": "A"
+  },
+  {
+    "id": "A03",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A04",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A05",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A06",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A07",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A08",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A09",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A10",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A11",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A12",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A13",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A14",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A15",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A16",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A17",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A18",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A19",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A20",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A21",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A22",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A23",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A24",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A25",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A26",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A27",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A28",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A29",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A30",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A31",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A32",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A33",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A34",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A35",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A36",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A37",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A38",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "A39",
+    "status": "Available",
+    "floor": "A"
+  },
+  {
+    "id": "A40",
+    "status": "Occupied",
+    "floor": "A"
+  },
+  {
+    "id": "B01",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B02",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B03",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B04",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B05",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B06",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B07",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B08",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B09",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B10",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B11",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B12",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B13",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B14",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B15",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B16",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B17",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B18",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B19",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B20",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B21",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B22",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B23",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B24",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B25",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B26",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B27",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B28",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B29",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B30",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B31",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B32",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B33",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B34",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B35",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B36",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B37",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B38",
+    "status": "Available",
+    "floor": "B"
+  },
+  {
+    "id": "B39",
+    "status": "Occupied",
+    "floor": "B"
+  },
+  {
+    "id": "B40",
+    "status": "Occupied",
+    "floor": "B"
+  }
+]

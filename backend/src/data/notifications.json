@@ -1,0 +1,80 @@
+[
+  {
+    "id": "noti_1778428424918_u1vvg",
+    "audience": "CUSTOMER",
+    "userId": "acc_004",
+    "type": "SUBSCRIPTION_CREATED",
+    "title": "Đăng ký vé tháng thành công",
+    "message": "Vé tháng của bạn có hiệu lực đến 9/6/2026.",
+    "level": "SUCCESS",
+    "read": true,
+    "createdAt": "2026-05-10T15:53:44.918Z",
+    "link": "/customer/subscription",
+    "dedupeKey": "subscription-created-inv_month_1778428413358_ubhpw"
+  },
+  {
+    "id": "noti_1778428424922_1vgyn",
+    "audience": "CUSTOMER",
+    "userId": "acc_004",
+    "type": "PAYMENT_SUCCESS",
+    "title": "Thanh toán BKPay thành công",
+    "message": "Bạn đã thanh toán 72.000 VND cho 1 khoản qua BKPay.",
+    "level": "SUCCESS",
+    "read": true,
+    "createdAt": "2026-05-10T15:53:44.922Z",
+    "link": "/customer/payment",
+    "dedupeKey": "payment-success-tx_bkpay_1778428424907_ylo29"
+  },
+  {
+    "id": "noti_1778428511102_hhuba",
+    "audience": "CUSTOMER",
+    "userId": "acc_004",
+    "type": "VEHICLE_APPROVED",
+    "title": "Hồ sơ xe đã được duyệt",
+    "message": "Xe biển số 62-AN 085.53 đã được duyệt và có thể sử dụng trong bãi xe.",
+    "level": "SUCCESS",
+    "read": false,
+    "createdAt": "2026-05-10T15:55:11.102Z",
+    "link": "/customer/vehicles/register",
+    "dedupeKey": "vehicle-review-veh_1778428372383_uiqhj-APPROVED-2026-05-10T15:55:11.042Z"
+  },
+  {
+    "id": "noti_1778428516346_4v5h3",
+    "audience": "CUSTOMER",
+    "userId": "acc_004",
+    "type": "VEHICLE_APPROVED",
+    "title": "Hồ sơ xe đã được duyệt",
+    "message": "Xe biển số 62-AN 085.53 đã được duyệt và có thể sử dụng trong bãi xe.",
+    "level": "SUCCESS",
+    "read": false,
+    "createdAt": "2026-05-10T15:55:16.346Z",
+    "link": "/customer/vehicles/register",
+    "dedupeKey": "vehicle-review-veh_1778428372383_uiqhj-APPROVED-2026-05-10T15:55:16.282Z"
+  },
+  {
+    "id": "noti_1778428516468_519r2",
+    "audience": "CUSTOMER",
+    "userId": "acc_004",
+    "type": "VEHICLE_APPROVED",
+    "title": "Hồ sơ xe đã được duyệt",
+    "message": "Xe biển số 62-AN 085.53 đã được duyệt và có thể sử dụng trong bãi xe.",
+    "level": "SUCCESS",
+    "read": false,
+    "createdAt": "2026-05-10T15:55:16.468Z",
+    "link": "/customer/vehicles/register",
+    "dedupeKey": "vehicle-review-veh_1778428372383_uiqhj-APPROVED-2026-05-10T15:55:16.405Z"
+  },
+  {
+    "id": "noti_1778428516579_puog5",
+    "audience": "CUSTOMER",
+    "userId": "acc_004",
+    "type": "VEHICLE_APPROVED",
+    "title": "Hồ sơ xe đã được duyệt",
+    "message": "Xe biển số 62-AN 085.53 đã được duyệt và có thể sử dụng trong bãi xe.",
+    "level": "SUCCESS",
+    "read": false,
+    "createdAt": "2026-05-10T15:55:16.579Z",
+    "link": "/customer/vehicles/register",
+    "dedupeKey": "vehicle-review-veh_1778428372383_uiqhj-APPROVED-2026-05-10T15:55:16.521Z"
+  }
+]

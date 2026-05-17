@@ -10,6 +10,12 @@ Trong thiết kế của hệ thống, các kiểu dữ liệu liệt kê (Enume
         \item \texttt{ADMIN}: Quản trị viên hệ thống.
     \end{itemize}
 
+    \item \textbf{Account\_Status}: Quản lý trạng thái hoạt động của tài khoản (Account) trong hệ thống:
+    \begin{itemize}
+        \item \texttt{ACTIVE}: Tài khoản đang hoạt động bình thường, có thể đăng nhập và sử dụng các chức năng được phân quyền.
+        \item \texttt{DISABLED}: Tài khoản bị vô hiệu hóa hoặc tạm khóa, không cho phép truy cập hệ thống cho đến khi được mở lại.
+    \end{itemize}
+
     \item \textbf{IoTDevice\_Status}: Định nghĩa các trạng thái hoạt động của các thiết bị cảm biến (IoTDevice) tại bãi xe:
     \begin{itemize}
         \item \texttt{ACTIVE}: Thiết bị đang hoạt động bình thường.

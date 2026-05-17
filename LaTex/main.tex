@@ -37,6 +37,8 @@
 \usepackage{tocloft} % for customizing TOC
 \usepackage{indentfirst} % Bắt buộc đoạn đầu tiên sau tiêu đề phải thụt đầu dòng
 \usepackage{subcaption}
+\usepackage[backend=biber]{biblatex} % Khai báo gói biblatex
+\addbibresource{references.bib} % Chỉ định file chứa tài liệu tham khảo
 \setlength{\parindent}{1.5em} % Thiết lập độ rộng thụt vào (có thể chỉnh thành 1cm, 2em...)
 
 % for code and result
@@ -134,7 +136,7 @@
     \includegraphics[width=0.5\textwidth]{hcmut.png}\\[0.3cm]
     
     % Title and Subtitle
-    \textbf{\LARGE{BÁO CÁO BTL LẦN 2}}\\[0.2cm]
+    \textbf{\LARGE{BÁO CÁO BTL LẦN 3}}\\[0.2cm]
     \textbf{\Large{CÔNG NGHỆ PHẦN MỀM (CO3001)}}\\[0.6cm]
     
     % Group Info
@@ -325,6 +327,34 @@ Ranh giới hệ thống xác định giới hạn mà phần mềm IoT-SPMS tr�
     \item \textbf{Tác nhân con người:} Bao gồm Sinh viên, Giảng viên, Khách vãng lai, Nhân viên vận hành và Admin. Đây là các đối tượng tương tác với hệ thống qua các thiết bị đầu cuối nhưng không thuộc quyền kiểm soát nội tại của logic phần mềm.
 \end{itemize}
 
+\section{Các non-interactive functional requirement}
+\begin{itemize}
+    \item Hệ thống sẽ làm nổi bật những khu vực có nhiều vị trí trống lên màn hình
+\end{itemize} 
+
+\begin{itemize}
+    \item Tự tạo hóa đơn định kỳ:
+    \vspace*{-5pt}
+    \begin{itemize}
+        \item Tổng hợp phí gửi xe cuối mỗi chu kỳ (cuối tháng): đăng ký gói tháng hoặc ghi nợ.
+        \item Tạo hóa đơn cho từng người dùng.
+        \item Lưu hóa đơn vào cơ sở dữ liệu của hệ thống.
+
+    \end{itemize}
+\end{itemize}
+\begin{itemize}
+    \item Tự tạo thông báo thanh toán:
+    \vspace*{-5pt}
+    \begin{itemize}
+        \item Gửi thông báo khi tạo hóa đơn
+        \item Gửi thông báo khi thanh toán thành công / thất bại
+        \item Gửi nhắc nhở khi sắp hết hoặc quá thời gian thanh toán
+    \end{itemize}
+\end{itemize}
+
+\input{contents/non_functional_req.tex}
+
+
 \section{Screnario và các diagram cho các nhóm chức năng}
 \vspace{-0.5cm}
 \subsection{Nhóm chức năng quản lý tài khoản}
@@ -354,32 +384,7 @@ Ranh giới hệ thống xác định giới hạn mà phần mềm IoT-SPMS tr�
 \section{UI design}
 \input{contents/UI.tex}
 
-\section{Các non-interactive functional requirement}
-\begin{itemize}
-    \item Hệ thống sẽ làm nổi bật những khu vực có nhiều vị trí trống lên màn hình
-\end{itemize} 
 
-\begin{itemize}
-    \item Tự tạo hóa đơn định kỳ:
-    \vspace*{-5pt}
-    \begin{itemize}
-        \item Tổng hợp phí gửi xe cuối mỗi chu kỳ (cuối tháng): đăng ký gói tháng hoặc ghi nợ.
-        \item Tạo hóa đơn cho từng người dùng.
-        \item Lưu hóa đơn vào cơ sở dữ liệu của hệ thống.
-
-    \end{itemize}
-\end{itemize}
-\begin{itemize}
-    \item Tự tạo thông báo thanh toán:
-    \vspace*{-5pt}
-    \begin{itemize}
-        \item Gửi thông báo khi tạo hóa đơn
-        \item Gửi thông báo khi thanh toán thành công / thất bại
-        \item Gửi nhắc nhở khi sắp hết hoặc quá thời gian thanh toán
-    \end{itemize}
-\end{itemize}
-
-\input{contents/non_functional_req.tex}
 
 \section{Danh sách các Method và Class Diagram}
 
@@ -394,5 +399,11 @@ Ranh giới hệ thống xác định giới hạn mà phần mềm IoT-SPMS tr�
 \input{contents/class.tex}
 
 \input{contents/testcase.tex}
+
+\section*{Link Github:}
+\href{https://github.com/KTX-0711/Software-Engineering-Assignment-HK252}{https://github.com/KTX-0711/Software-Engineering-Assignment-HK252}
+
+\nocite{*}
+\printbibliography
 
 \end{document}

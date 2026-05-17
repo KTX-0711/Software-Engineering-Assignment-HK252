@@ -1,0 +1,82 @@
+[
+  {
+    "id": "acc_001",
+    "username": "phamhoangnam.admin",
+    "password": "123",
+    "role": "ADMIN",
+    "displayName": "Phạm Hoàng Nam"
+  },
+  {
+    "id": "acc_002",
+    "username": "leminhkhang.staff",
+    "password": "123",
+    "role": "EMPLOYEE",
+    "displayName": "Lê Minh Khang"
+  },
+  {
+    "id": "acc_008",
+    "username": "vothanhdat.staff",
+    "password": "123",
+    "role": "EMPLOYEE",
+    "displayName": "Võ Thành Đạt"
+  },
+  {
+    "id": "acc_009",
+    "username": "dangthuyanh.staff",
+    "password": "123",
+    "role": "EMPLOYEE",
+    "displayName": "Đặng Thùy Anh"
+  },
+  {
+    "id": "acc_003",
+    "username": "nguyenvanhung@hcmut.edu.vn",
+    "password": "123",
+    "role": "CUSTOMER",
+    "displayName": "Nguyễn Văn Hùng",
+    "studentId": "2311301",
+    "accountCategory": "STUDENT",
+    "parkingPlan": "PAYG"
+  },
+  {
+    "id": "acc_004",
+    "username": "nguyentoquocviet@hcmut.edu.vn",
+    "password": "123",
+    "role": "CUSTOMER",
+    "displayName": "Nguyễn Tô Quốc Việt",
+    "studentId": "2313898",
+    "accountCategory": "STUDENT",
+    "parkingPlan": "MONTH",
+    "planActivatedAt": "2026-05-10T15:53:44.907Z",
+    "planExpiresAt": "2026-06-09T15:53:44.907Z"
+  },
+  {
+    "id": "acc_005",
+    "username": "tranminhtri@hcmut.edu.vn",
+    "password": "123",
+    "role": "CUSTOMER",
+    "displayName": "Trần Minh Trí",
+    "studentId": "2313626",
+    "accountCategory": "STUDENT",
+    "parkingPlan": "PAYG"
+  },
+  {
+    "id": "acc_006",
+    "username": "nguyenluukhanhtrinh@hcmut.edu.vn",
+    "password": "123",
+    "role": "CUSTOMER",
+    "displayName": "Nguyễn Lưu Khánh Trình",
+    "studentId": "2313638",
+    "accountCategory": "STUDENT",
+    "parkingPlan": "PAYG"
+  },
+  {
+    "id": "acc_007",
+    "username": "lecongvinh@hcmut.edu.vn",
+    "password": "123",
+    "role": "CUSTOMER",
+    "displayName": "Lê Công Vinh",
+    "studentId": "2313912",
+    "accountCategory": "STUDENT",
+    "parkingPlan": "PAYG"
+  }
+]

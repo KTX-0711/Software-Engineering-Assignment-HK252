@@ -1,0 +1,42 @@
+[
+  {
+    "id": "RFID_SV001",
+    "type": "MEMBER",
+    "accountId": "acc_003",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "RFID_SV002",
+    "type": "MEMBER",
+    "accountId": "acc_004",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "RFID_SV003",
+    "type": "MEMBER",
+    "accountId": "acc_005",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "RFID_SV004",
+    "type": "MEMBER",
+    "accountId": "acc_006",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "RFID_SV005",
+    "type": "MEMBER",
+    "accountId": "acc_007",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "RFID_GUEST_001",
+    "type": "GUEST",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "RFID_GUEST_002",
+    "type": "GUEST",
+    "status": "ACTIVE"
+  }
+]

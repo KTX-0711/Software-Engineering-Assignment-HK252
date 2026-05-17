@@ -1,0 +1,139 @@
+[
+  {
+    "id": "log_1778420806646_swyv9",
+    "timestamp": "2026-05-10T13:46:46.646Z",
+    "actor": "RFID_SV001",
+    "action": "GATE_IN",
+    "payload": {
+      "licensePlate": "59-X1 123.45",
+      "sessionId": "sess_1778420806645"
+    }
+  },
+  {
+    "id": "log_1778428372422_5drhq",
+    "timestamp": "2026-05-10T15:52:52.422Z",
+    "actor": "acc_004",
+    "action": "VEHICLE_REGISTRATION_CREATED",
+    "payload": {
+      "vehicleId": "veh_1778428372383_uiqhj",
+      "licensePlate": "62-AN 085.53"
+    }
+  },
+  {
+    "id": "log_1778428413359_2onr9",
+    "timestamp": "2026-05-10T15:53:33.359Z",
+    "actor": "acc_004",
+    "action": "MONTHLY_PLAN_INVOICE_CREATED",
+    "payload": {
+      "invoiceId": "inv_month_1778428413358_ubhpw",
+      "amount": 72000
+    }
+  },
+  {
+    "id": "log_1778428424919_y5wyr",
+    "timestamp": "2026-05-10T15:53:44.919Z",
+    "actor": "acc_004",
+    "action": "BKPAY_INVOICES_PAID",
+    "payload": {
+      "transactionId": "tx_bkpay_1778428424907_ylo29",
+      "invoiceIds": [
+        "inv_month_1778428413358_ubhpw"
+      ],
+      "amount": 72000
+    }
+  },
+  {
+    "id": "log_1778428511101_f1upk",
+    "timestamp": "2026-05-10T15:55:11.101Z",
+    "actor": "acc_001",
+    "action": "VEHICLE_REGISTRATION_APPROVED",
+    "payload": {
+      "vehicleId": "veh_1778428372383_uiqhj",
+      "customerId": "acc_004",
+      "licensePlate": "62-AN 085.53"
+    }
+  },
+  {
+    "id": "log_1778428516345_15a5k",
+    "timestamp": "2026-05-10T15:55:16.345Z",
+    "actor": "acc_001",
+    "action": "VEHICLE_REGISTRATION_APPROVED",
+    "payload": {
+      "vehicleId": "veh_1778428372383_uiqhj",
+      "customerId": "acc_004",
+      "licensePlate": "62-AN 085.53"
+    }
+  },
+  {
+    "id": "log_1778428516468_hlghm",
+    "timestamp": "2026-05-10T15:55:16.468Z",
+    "actor": "acc_001",
+    "action": "VEHICLE_REGISTRATION_APPROVED",
+    "payload": {
+      "vehicleId": "veh_1778428372383_uiqhj",
+      "customerId": "acc_004",
+      "licensePlate": "62-AN 085.53"
+    }
+  },
+  {
+    "id": "log_1778428516578_5imsu",
+    "timestamp": "2026-05-10T15:55:16.578Z",
+    "actor": "acc_001",
+    "action": "VEHICLE_REGISTRATION_APPROVED",
+    "payload": {
+      "vehicleId": "veh_1778428372383_uiqhj",
+      "customerId": "acc_004",
+      "licensePlate": "62-AN 085.53"
+    }
+  },
+  {
+    "id": "log_1778428621634_e6lgj",
+    "timestamp": "2026-05-10T15:57:01.634Z",
+    "actor": "RFID_SV002",
+    "action": "GATE_IN",
+    "payload": {
+      "licensePlate": "62-AN 085.53",
+      "sessionId": "sess_1778428621608"
+    }
+  },
+  {
+    "id": "log_1778428629031_nk6si",
+    "timestamp": "2026-05-10T15:57:09.031Z",
+    "actor": "RFID_SV002",
+    "action": "GATE_OUT",
+    "payload": {
+      "sessionId": "sess_1778428621608",
+      "fee": 0
+    }
+  },
+  {
+    "id": "log_1778428645358_lkd7i",
+    "timestamp": "2026-05-10T15:57:25.358Z",
+    "actor": "RFID_GUEST_001",
+    "action": "GATE_IN",
+    "payload": {
+      "licensePlate": "62-AN 085.53",
+      "sessionId": "sess_1778428645358"
+    }
+  },
+  {
+    "id": "log_1778428657499_taumo",
+    "timestamp": "2026-05-10T15:57:37.499Z",
+    "actor": "RFID_GUEST_001",
+    "action": "GATE_OUT",
+    "payload": {
+      "sessionId": "sess_1778428645358",
+      "fee": 4000
+    }
+  },
+  {
+    "id": "log_1778428657689_fbwqd",
+    "timestamp": "2026-05-10T15:57:37.689Z",
+    "actor": "acc_008",
+    "action": "CASH_PAYMENT_CONFIRM",
+    "payload": {
+      "sessionId": "sess_1778428645358",
+      "amount": 4000
+    }
+  }
+]

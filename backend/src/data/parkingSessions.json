@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sess_1778420806645",
+    "cardId": "RFID_SV001",
+    "licensePlate": "59-X1 123.45",
+    "checkInTime": "2026-05-10T13:46:46.645Z",
+    "status": "Active",
+    "fee": 0
+  },
+  {
+    "id": "sess_1778428621608",
+    "cardId": "RFID_SV002",
+    "licensePlate": "62-AN 085.53",
+    "checkInTime": "2026-05-10T15:57:01.608Z",
+    "status": "Completed",
+    "fee": 0,
+    "vehicleId": "veh_1778428372383_uiqhj",
+    "checkOutTime": "2026-05-10T15:57:09.029Z"
+  },
+  {
+    "id": "sess_1778428645358",
+    "cardId": "RFID_GUEST_001",
+    "licensePlate": "62-AN 085.53",
+    "checkInTime": "2026-05-10T15:57:25.358Z",
+    "status": "Completed",
+    "fee": 4000,
+    "checkOutTime": "2026-05-10T15:57:37.498Z"
+  }
+]

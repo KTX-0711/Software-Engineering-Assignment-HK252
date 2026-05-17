@@ -1,0 +1,8 @@
+[
+  {
+    "id": "default",
+    "guestPerVisitFee": 4000,
+    "studentPerVisitFee": 3000,
+    "monthlyDiscountRate": 0.8
+  }
+]

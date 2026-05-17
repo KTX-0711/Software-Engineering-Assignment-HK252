@@ -1,0 +1,20 @@
+[
+  {
+    "id": "tx_bkpay_1778428424907_ylo29",
+    "invoiceIds": [
+      "inv_month_1778428413358_ubhpw"
+    ],
+    "amount": 72000,
+    "status": "Paid",
+    "method": "BKPay",
+    "timestamp": "2026-05-10T15:53:44.907Z"
+  },
+  {
+    "id": "tx_1778428657688",
+    "amount": 4000,
+    "status": "Paid",
+    "method": "Cash",
+    "sessionId": "sess_1778428645358",
+    "timestamp": "2026-05-10T15:57:37.688Z"
+  }
+]
